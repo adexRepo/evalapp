@@ -6,5 +6,17 @@
     <select id="selectAllUserBase" resultType="Map">
         select * from user_base ub 
     </select>
+    <select id="selectPositionList" resultType="com.kkp.evalapp.model.Simple">
+        select * from positions ;
+    </select>
+    <select id="selectDepartementList" resultType="com.kkp.evalapp.model.Simple">
+        select * from departments ;  
+    </select>
+    <select id="selectLevelList" resultType="com.kkp.evalapp.model.Simple">
+        select * from levels ;
+    </select>
+    <select id="selectDivisionList" resultType="com.kkp.evalapp.model.Simple">
+        select * from divisions ; 
+    </select>
     
 </mapper>

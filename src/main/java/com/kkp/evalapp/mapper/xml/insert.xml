@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
+  'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+<mapper namespace="com.kkp.evalapp.mapper.EvalappMapper">
+    
+    <insert id="insertData" parameterType="com.kkp.evalapp.model.User">
+        INSERT INTO User (id, created_at, nama, div_id, dept_id, position_id, level_id, email, tel_no)
+        VALUES (#{id}, #{createdAt}, #{nama}, #{divId}, #{deptId}, #{positionId}, #{levelId}, #{email}, #{telNo})
+    </insert>
+
+</mapper>

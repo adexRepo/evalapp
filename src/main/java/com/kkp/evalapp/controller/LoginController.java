@@ -56,7 +56,7 @@ public class LoginController implements Initializable {
     @FXML
     private void login(ActionEvent event) throws IOException {
         if (userService.authenticate(getUsername(), getPassword())) {
-            router.navigate(DashboardController.class, event);
+            // router.navigate(DashboardController.class, event);
 
         } else {
             lblLogin.setText("Login Failed.");

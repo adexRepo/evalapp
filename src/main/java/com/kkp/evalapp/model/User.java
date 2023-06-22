@@ -3,18 +3,24 @@ package com.kkp.evalapp.model;
 import java.time.LocalDateTime;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class User {
-    private long          id         ;
-    private String        fullname   ;
-    private LocalDateTime datecreated;
-    private String        city       ;
-    private String        country    ;
+
+    private Integer       id         ;
+    private LocalDateTime createdAt  ;
+    private String        nama       ;
+    private Integer       divId      ;
+    private Integer       deptId     ;
+    private Integer       positionId ;
+    private Integer       levelId    ;
     private String        email      ;
-    private String        password   ;
+    private String        telNo      ;
+
 }

@@ -3,17 +3,27 @@ package com.kkp.evalapp.service.impl;
 import java.util.List;
 import java.util.Optional;
 
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Service;
 
+import com.kkp.evalapp.mapper.EvalappMapper;
+import com.kkp.evalapp.model.Simple;
 import com.kkp.evalapp.model.User;
 import com.kkp.evalapp.service.UserService;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
+    private final SqlSession session;
+
     @Override
-    public User save(User entity) {
-        throw new UnsupportedOperationException("Unimplemented method 'save'");
+    public void save(User entity) {
+
+        session.getMapper(EvalappMapper.class).insertNewUser(entity);
+
     }
 
     @Override
@@ -54,5 +64,25 @@ public class UserServiceImpl implements UserService {
     @Override
     public void deleteInBatch(List<User> users) {
         throw new UnsupportedOperationException("Unimplemented method 'deleteInBatch'");
+    }
+
+    @Override
+    public List<Simple> getPositions() {
+        return session.getMapper(EvalappMapper.class).selectPositionList();
+    }
+
+    @Override
+    public List<Simple> getDivisions() {
+        return session.getMapper(EvalappMapper.class).selectDivisionList();
+    }
+
+    @Override
+    public List<Simple> getDepartements() {
+        return session.getMapper(EvalappMapper.class).selectDepartementList();
+    }
+
+    @Override
+    public List<Simple> getLevels() {
+        return session.getMapper(EvalappMapper.class).selectLevelList();
     }
 }

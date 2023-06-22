@@ -8,88 +8,141 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="533.0" prefWidth="534.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kkp.evalapp.controller.SignupController">
+<AnchorPane id="AnchorPane" prefHeight="521.0" prefWidth="750.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kkp.evalapp.controller.SignupController">
     <children>
-        <Button fx:id="button" layoutX="402.0" layoutY="427.0" onAction="#handleRegisterButtonAction" text="Register" />
-        <GridPane layoutX="59.0" layoutY="90.0" prefHeight="299.0" prefWidth="343.0">
-            <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="166.0" minWidth="10.0" prefWidth="133.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="210.0" minWidth="10.0" prefWidth="210.0" />
-            </columnConstraints>
-            <rowConstraints>
-                <RowConstraints maxHeight="46.0" minHeight="10.0" prefHeight="34.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="28.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="46.0" minHeight="10.0" prefHeight="34.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="28.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="46.0" minHeight="10.0" prefHeight="34.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="28.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="46.0" minHeight="10.0" prefHeight="34.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="28.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="46.0" minHeight="10.0" prefHeight="34.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="28.0" vgrow="SOMETIMES" />
-            </rowConstraints>
-            <children>
-                <Label id="lblFullName" prefHeight="19.0" prefWidth="128.0" text="Full Name:">
-                    <font>
+      <VBox alignment="TOP_CENTER" prefHeight="524.0" prefWidth="750.0" style="-fx-background-color: DODGERBLUE; -fx-background-radius: 15px; -fx-border-radius: 15px; -fx-border-color: DEDEE4;">
+         <children>
+              <Label id="lblError" fx:id="lblError" prefHeight="17.0" prefWidth="343.0" textFill="#32955c" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="                      " wrappingWidth="94.31640625">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Text>
+            <Text fill="WHITE" smooth="false" stroke="WHITE" strokeWidth="0.0" text="Evaluation Application" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="30.0" />
+               </font>
+            </Text>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="                      " wrappingWidth="94.31640625">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Text>
+              <GridPane alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="232.0" prefWidth="678.0">
+                  <columnConstraints>
+                      <ColumnConstraints />
+                      <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="166.0" minWidth="10.0" prefWidth="133.0" />
+                  <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="245.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="210.0" minWidth="10.0" prefWidth="75.0" />
+                  <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="210.0" minWidth="10.0" prefWidth="175.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="239.0" />
+                  </columnConstraints>
+                  <rowConstraints>
+                      <RowConstraints />
+                      <RowConstraints maxHeight="45.0" minHeight="18.0" prefHeight="20.0" />
+                      <RowConstraints maxHeight="73.0" minHeight="3.0" prefHeight="36.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="104.0" minHeight="0.0" prefHeight="15.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="187.0" minHeight="7.0" prefHeight="31.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="183.0" minHeight="0.0" prefHeight="23.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="184.0" minHeight="0.0" prefHeight="31.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="190.0" minHeight="2.0" prefHeight="20.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="193.0" minHeight="10.0" prefHeight="34.0" vgrow="SOMETIMES" />
+                  </rowConstraints>
+                  <children>
+                      <Label id="lblFullName" prefHeight="19.0" prefWidth="128.0" text="Full Name :" textFill="WHITE" GridPane.columnIndex="4">
+                          <font>
+                              <Font size="15.0" />
+                          </font>
+                      </Label>
+                      <TextField id="txtFullName" fx:id="txtFullName" promptText="Enter Your Name" GridPane.columnIndex="5" />
+                      <Label id="lblMail" prefHeight="16.0" prefWidth="126.0" text="Mail Address :" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                          <font>
+                              <Font size="15.0" />
+                          </font>
+                      </Label>
+                      <TextField id="txtMail" fx:id="txtMail" prefHeight="28.0" prefWidth="193.0" promptText="Enter Your E-mail" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                      <Label id="lblPass" prefHeight="16.0" prefWidth="124.0" text="Password :" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="8">
+                          <font>
+                              <Font size="15.0" />
+                          </font>
+                      </Label>
+                      <PasswordField id="txtRePass" fx:id="txtRePass" promptText="Re Type Your Password" GridPane.columnIndex="5" GridPane.rowIndex="8">
+                          <font>
+                              <Font size="14.0" />
+                          </font>
+                      </PasswordField>
+                      <PasswordField id="txtPass" fx:id="txtPass" promptText="Enter your password" GridPane.columnIndex="2" GridPane.rowIndex="8">
+                          <font>
+                              <Font size="14.0" />
+                          </font>
+                      </PasswordField>
+                  <Label id="lblFullName" prefHeight="19.0" prefWidth="128.0" text="ID Employee :" textFill="WHITE" GridPane.columnIndex="1">
+                     <font>
                         <Font size="15.0" />
-                    </font>
-                </Label>
-                <TextField id="txtFullName" fx:id="txtFullName" promptText="Enter your name" GridPane.columnIndex="1">
-                    <font>
-                        <Font size="14.0" />
-                    </font>
-                </TextField>
-                <Label id="lblMail" prefHeight="16.0" prefWidth="126.0" text="Mail Address:" GridPane.rowIndex="2">
-                    <font>
+                     </font>
+                  </Label>
+                  <TextField id="txtIdImployee" fx:id="txtIdImployee" promptText="Enter Your Id Number" GridPane.columnIndex="2" />
+                  <ComboBox id="boxDivision" fx:id="boxDivision" prefHeight="29.0" prefWidth="209.0" promptText="Select Division" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                  <Label id="lblCountry" prefHeight="19.0" prefWidth="117.0" text="Division :" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                     <font>
                         <Font size="15.0" />
-                    </font>
-                </Label>
-                <TextField id="txtMail" fx:id="txtMail" prefHeight="28.0" prefWidth="193.0" promptText="Enter your mail" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                    <font>
-                        <Font size="14.0" />
-                    </font>
-                </TextField>
-                <Label id="lblPass" prefHeight="16.0" prefWidth="124.0" text="Password:" GridPane.rowIndex="4">
-                    <font>
+                     </font>
+                  </Label>
+                  <Label id="lblCountry" prefHeight="21.0" prefWidth="131.0" text="Departement :" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="4">
+                     <font>
                         <Font size="15.0" />
-                    </font>
-                </Label>
-                <Label id="lblCountry" prefHeight="19.0" prefWidth="117.0" text="Country:" GridPane.rowIndex="6">
-                    <font>
+                     </font>
+                  </Label>
+                  <Label id="lblCountry" prefHeight="21.0" prefWidth="114.0" text="Level :" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="6">
+                     <font>
                         <Font size="15.0" />
-                    </font>
-                </Label>
-                <Label id="lblCity" prefHeight="16.0" prefWidth="120.0" text="City:" GridPane.rowIndex="8">
-                    <font>
+                     </font>
+                  </Label>
+                  <ComboBox id="boxDepartement" fx:id="boxDepartement" prefHeight="29.0" prefWidth="209.0" promptText="Select Departement" GridPane.columnIndex="5" GridPane.rowIndex="4" />
+                  <ComboBox id="boxPosition" fx:id="boxPosition" prefHeight="29.0" prefWidth="209.0" promptText="Select Position" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+                  <ComboBox id="boxLevel" fx:id="boxLevel" prefHeight="29.0" prefWidth="209.0" promptText="Select Level" GridPane.columnIndex="5" GridPane.rowIndex="6" />
+                  <Label id="lblPass" prefHeight="16.0" prefWidth="124.0" text="Re-Password :" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="8">
+                     <font>
                         <Font size="15.0" />
-                    </font>
-                </Label>
-                <TextField id="txtCity" fx:id="txtCity" promptText="Enter your city" GridPane.columnIndex="1" GridPane.rowIndex="8">
-                    <font>
-                        <Font size="14.0" />
-                    </font>
-                </TextField>
-                <ComboBox id="boxCountry" fx:id="boxCountry" prefHeight="29.0" prefWidth="171.0" promptText="Select Country" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                <Label id="lblNameError" fx:id="lblNameError" prefHeight="16.0" prefWidth="220.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                <Label id="lblMailError" fx:id="lblMailError" prefHeight="16.0" prefWidth="228.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                <Label id="lblPassError" fx:id="lblPassError" prefHeight="16.0" prefWidth="240.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                <Label id="lblCountryError" fx:id="lblCountryError" prefHeight="16.0" prefWidth="238.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                <Label id="lblCityError" fx:id="lblCityError" prefHeight="16.0" prefWidth="220.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-                <PasswordField id="txtPass" fx:id="txtPass" promptText="Enter your password" GridPane.columnIndex="1" GridPane.rowIndex="4">
-                    <font>
-                        <Font size="14.0" />
-                    </font>
-                </PasswordField>
-            </children>
-        </GridPane>
-        <Label id="lblError" fx:id="lblError" layoutX="96.0" layoutY="38.0" prefHeight="17.0" prefWidth="343.0" textFill="#32955c" />
-      <Button layoutX="246.0" layoutY="429.0" mnemonicParsing="false" onAction="#onLogin" text="Already have account?" textFill="#218161">
-         <font>
-            <Font name="Tahoma" size="12.0" />
-         </font>
-      </Button>
+                     </font>
+                  </Label>
+                  <TextField id="txtNoHp" fx:id="txtNoHp" prefHeight="30.0" prefWidth="177.0" promptText="Enter Your Phone Number" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+                  <Label id="lblMail" prefHeight="16.0" prefWidth="126.0" text="No Handphone :" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label id="lblCountry" prefHeight="21.0" prefWidth="122.0" text="Position :" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label id="lblCountry" prefHeight="21.0" prefWidth="49.0" GridPane.columnIndex="3">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  </children>
+              </GridPane>
+            <HBox alignment="TOP_CENTER" prefHeight="40.0" prefWidth="750.0" />
+            <HBox alignment="TOP_CENTER" prefHeight="65.0" prefWidth="750.0">
+               <children>
+                  <Button id="btnBackToLogin" fx:id="btnBackToLogin" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onLogin" prefHeight="49.0" prefWidth="144.0" text="Already have account?" textFill="#323232">
+                     <font>
+                        <Font name="Tahoma" size="12.0" />
+                     </font>
+                  </Button>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="                      " />
+                    <Button id="btnRegister" fx:id="btnRegister" onAction="#handleRegisterButtonAction" prefHeight="52.0" prefWidth="146.0" text="Register" textFill="#323232" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
     </children>
 </AnchorPane>
