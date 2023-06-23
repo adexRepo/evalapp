@@ -3,15 +3,16 @@ package com.kkp.evalapp.controller;
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 import com.kkp.evalapp.config.Router;
-import com.kkp.evalapp.model.Simple;
+import com.kkp.evalapp.constats.DataStorage;
 import com.kkp.evalapp.model.User;
 import com.kkp.evalapp.service.UserService;
+import com.kkp.evalapp.utils.Converter;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -34,16 +35,16 @@ public class SignupController implements Initializable {
     private final Router router;
 
     @FXML
-    private ComboBox<Simple> boxDepartement;
+    private ComboBox<String> boxDepartement ;
 
     @FXML
-    private ComboBox<Simple> boxDivision;
+    private ComboBox<String> boxDivision;
 
     @FXML
-    private ComboBox<Simple> boxLevel;
+    private ComboBox<String> boxLevel;
 
     @FXML
-    private ComboBox<Simple> boxPosition;
+    private ComboBox<String> boxPosition;
 
     @FXML
     private Button btnBackToLogin;
@@ -74,103 +75,58 @@ public class SignupController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
-        List<Simple> positions    = userService.getPositions();
-        List<Simple> divisions    = userService.getDivisions();
-        List<Simple> departements = userService.getDepartements();
-        List<Simple> levels       = userService.getLevels();
-
-        // display the list of countries
-        boxPosition.getItems().addAll(positions);
-        // boxPosition.setConverter((<Simple> a)->a.getName());
-        boxDivision.getItems().addAll(divisions);
-        boxDepartement.getItems().addAll(departements);
-        boxLevel.getItems().addAll(levels);
+        DataStorage dataStorage = DataStorage.getInstance();
+        boxPosition    .setItems((Converter.convertListToObservableList(dataStorage.getPositions   () )) );
+        boxDivision    .setItems((Converter.convertListToObservableList(dataStorage.getDivisions   () )) );
+        boxDepartement .setItems((Converter.convertListToObservableList(dataStorage.getDepartements() )) );
+        boxLevel       .setItems((Converter.convertListToObservableList(dataStorage.getLevels      () )) );
     }
 
-    private boolean isCompleteFill(){
-        ArrayList<Simple> boxesSimple = new ArrayList<>();
-        boxesSimple.add(boxDepartement.getValue());
-        boxesSimple.add(boxDivision.getValue());
-        boxesSimple.add(boxLevel.getValue());
-        boxesSimple.add(boxPosition.getValue());
 
-        for (Simple item : boxesSimple) {
-            if(item.getName().isEmpty()){
+    private boolean isCompleteFill() {
+        ArrayList<String> listStrings = new ArrayList<>();
+        listStrings.add(boxDepartement.getValue());
+        listStrings.add(boxDivision.getValue());
+        listStrings.add(boxLevel.getValue());
+        listStrings.add(boxPosition.getValue());
+        listStrings.add(txtFullName.getText());
+        listStrings.add(txtIdImployee.getText());
+        listStrings.add(txtMail.getText());
+        listStrings.add(txtNoHp.getText());
+        listStrings.add(txtPass.getText());
+        listStrings.add(txtRePass.getText());
+
+        for (String item : listStrings) {
+            if (StringUtils.hasLength(item)) {
                 lblError.setText("Please complete all the form");
                 return false;
-            }
-        }
-
-        ArrayList<TextField> txtList = new ArrayList<>();
-        txtList.add(txtFullName);
-        txtList.add(txtIdImployee);
-        txtList.add(txtMail);
-        txtList.add(txtNoHp);
-        txtList.add(txtPass);
-        txtList.add(txtRePass);
-
-        // iterate the textField nodes
-        for (TextField nodes : txtList) {
-            if (nodes.getText().isEmpty()) {
-                lblError.setText("Please complete all the form");
-                                return false;
             }
         }
 
         return true;
     }
 
-
     @FXML
     private void handleRegisterButtonAction(ActionEvent event) {
 
-        if(!isCompleteFill()){
+        if (!isCompleteFill()) {
             return;
         }
 
-        LocalDateTime  date = LocalDateTime.now();
+        LocalDateTime date = LocalDateTime.now();
         User newUser = User.builder()
                 .id(Integer.valueOf(txtIdImployee.getText()))
                 .createdAt(date)
                 .nama(txtFullName.getText())
-                .divId(boxDivision.getValue().getId())
-                .deptId(boxDepartement.getValue().getId())
-                .positionId(boxPosition.getValue().getId())
-                .levelId(boxLevel.getValue().getId())
+                .divId(Integer.valueOf(boxDivision.getId()))
+                .deptId(Integer.valueOf(boxDepartement.getId()) )
+                .positionId(Integer.valueOf(boxPosition.getId())  )
+                .levelId(Integer.valueOf(boxLevel.getId())  )
                 .email(txtMail.getText())
                 .telNo(txtNoHp.getText()).build();
 
         userService.save(newUser);
         lblError.setText("Registaration is succesful");
-
-
-        
-        // if (boxCountry.getSelectionModel().isEmpty()) { // check if a country is selected
-        //     lblCountryError.setText("Select a country from the list");
-        // } else if (EmailValidator.isValidEmailAddress(txtMail.getText()) == false) { // check if the mail address is a valid address
-        //     lblMailError.setText("Enter a valid mail");
-        //     lblError.setText("");
-        // } else {
-        //     lblCountryError.setText("");
-        //     lblMailError.setText("");
-
-        //     // store the user's inputs
-        //     fullName = txtFullName.getText();
-        //     mail = txtMail.getText();
-        //     pass = txtPass.getText();
-        //     country = boxCountry.getSelectionModel().getSelectedItem().toString();
-        //     city = txtCity.getText();
-
-        //     User user = new User();
-        //     user.setCity(city);
-        //     user.setCountry(country);
-        //     user.setEmail(mail);
-        //     user.setFullname(fullName);
-        //     user.setPassword(pass);
-        //     user.setDatecreated(LocalDateTime.now());
-        // }
-
     }
 
     @FXML

@@ -12,7 +12,7 @@ public interface UserService {
     
     public List<Simple> getPositions    ();
     public List<Simple> getDivisions    ();
-    public List<Simple> getDepartements ();
+    public List<Simple> getDepartments ();
     public List<Simple> getLevels       ();
 
     /* ------------------------------- Operational ------------------------------- */

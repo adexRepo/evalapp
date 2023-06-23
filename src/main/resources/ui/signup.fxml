@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="521.0" prefWidth="750.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kkp.evalapp.controller.SignupController">
+<AnchorPane id="AnchorPane" prefHeight="521.0" prefWidth="750.0"  xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kkp.evalapp.controller.SignupController">
     <children>
       <VBox alignment="TOP_CENTER" prefHeight="524.0" prefWidth="750.0" style="-fx-background-color: DODGERBLUE; -fx-background-radius: 15px; -fx-border-radius: 15px; -fx-border-color: DEDEE4;">
          <children>
@@ -36,12 +36,12 @@
             </Text>
               <GridPane alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="232.0" prefWidth="678.0">
                   <columnConstraints>
-                      <ColumnConstraints />
-                      <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="166.0" minWidth="10.0" prefWidth="133.0" />
-                  <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="245.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="210.0" minWidth="10.0" prefWidth="75.0" />
-                  <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="210.0" minWidth="10.0" prefWidth="175.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="239.0" />
+                     <ColumnConstraints />
+                     <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="166.0" minWidth="10.0" prefWidth="133.0" />
+                     <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="245.0" />
+                     <ColumnConstraints hgrow="SOMETIMES" maxWidth="210.0" minWidth="10.0" prefWidth="75.0" />
+                     <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="210.0" minWidth="10.0" prefWidth="175.0" />
+                     <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="239.0" />
                   </columnConstraints>
                   <rowConstraints>
                       <RowConstraints />
@@ -133,13 +133,13 @@
             <HBox alignment="TOP_CENTER" prefHeight="40.0" prefWidth="750.0" />
             <HBox alignment="TOP_CENTER" prefHeight="65.0" prefWidth="750.0">
                <children>
-                  <Button id="btnBackToLogin" fx:id="btnBackToLogin" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onLogin" prefHeight="49.0" prefWidth="144.0" text="Already have account?" textFill="#323232">
+                  <Button id="btnBackToLogin" fx:id="btnBackToLogin" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onLogin" prefHeight="49.0" prefWidth="144.0" text="Already have account?">
                      <font>
                         <Font name="Tahoma" size="12.0" />
                      </font>
                   </Button>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="                      " />
-                    <Button id="btnRegister" fx:id="btnRegister" onAction="#handleRegisterButtonAction" prefHeight="52.0" prefWidth="146.0" text="Register" textFill="#323232" />
+                    <Button id="btnRegister" fx:id="btnRegister" onAction="#handleRegisterButtonAction" prefHeight="52.0" prefWidth="146.0" text="Register"  />
                </children>
             </HBox>
          </children>

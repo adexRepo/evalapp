@@ -19,11 +19,32 @@ public class UserServiceImpl implements UserService {
 
     private final SqlSession session;
 
+    /* --------------------------------- Select --------------------------------- */
+    @Override
+    public List<Simple> getPositions() {
+        return session.getMapper(EvalappMapper.class).selectPositionList();
+    }
+
+    @Override
+    public List<Simple> getDivisions() {
+        return session.getMapper(EvalappMapper.class).selectDivisionList();
+    }
+
+    @Override
+    public List<Simple> getDepartments() {
+        return session.getMapper(EvalappMapper.class).selectDepartementList();
+    }
+
+    @Override
+    public List<Simple> getLevels() {
+        return session.getMapper(EvalappMapper.class).selectLevelList();
+    }
+
+    /* --------------------------------- insert --------------------------------- */
+
     @Override
     public void save(User entity) {
-
         session.getMapper(EvalappMapper.class).insertNewUser(entity);
-
     }
 
     @Override
@@ -66,23 +87,4 @@ public class UserServiceImpl implements UserService {
         throw new UnsupportedOperationException("Unimplemented method 'deleteInBatch'");
     }
 
-    @Override
-    public List<Simple> getPositions() {
-        return session.getMapper(EvalappMapper.class).selectPositionList();
-    }
-
-    @Override
-    public List<Simple> getDivisions() {
-        return session.getMapper(EvalappMapper.class).selectDivisionList();
-    }
-
-    @Override
-    public List<Simple> getDepartements() {
-        return session.getMapper(EvalappMapper.class).selectDepartementList();
-    }
-
-    @Override
-    public List<Simple> getLevels() {
-        return session.getMapper(EvalappMapper.class).selectLevelList();
-    }
 }

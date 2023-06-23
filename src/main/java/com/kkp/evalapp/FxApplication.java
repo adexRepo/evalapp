@@ -1,6 +1,11 @@
 package com.kkp.evalapp;
 
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.context.ConfigurableApplicationContext;
+
+import com.kkp.evalapp.constats.DataStorage;
 import com.kkp.evalapp.controller.SignupController;
+import com.kkp.evalapp.service.UserService;
 
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -8,8 +13,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import net.rgielen.fxweaver.core.FxWeaver;
-import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.context.ConfigurableApplicationContext;
 
 public class FxApplication extends Application {
 
@@ -25,6 +28,15 @@ public class FxApplication extends Application {
 
     @Override
     public void start(Stage stage) {
+        UserService userService = applicationContext.getBean(UserService.class);
+        DataStorage dataStorage = DataStorage.getInstance();
+        dataStorage.setDepartements(userService.getDepartments ());
+        dataStorage.setDivisions   (userService.getDivisions   ());
+        dataStorage.setLevels      (userService.getLevels      ());
+        dataStorage.setPositions   (userService.getPositions   ());
+
+        System.out.println(dataStorage.toString());
+
         FxWeaver fxWeaver = applicationContext.getBean(FxWeaver.class);
         Parent root = fxWeaver.loadView(SignupController.class);
         Scene scene = new Scene(root);
