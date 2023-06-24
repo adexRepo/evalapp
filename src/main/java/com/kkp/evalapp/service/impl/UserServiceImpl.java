@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Service;
 
 import com.kkp.evalapp.mapper.EvalappMapper;
+import com.kkp.evalapp.model.ResponseData;
 import com.kkp.evalapp.model.Simple;
 import com.kkp.evalapp.model.User;
 import com.kkp.evalapp.service.UserService;
@@ -48,6 +49,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public ResponseData<?> authenticate(Integer employeeId, String password) {
+        User user = session.getMapper(EvalappMapper.class).selectUserById(employeeId);
+
+        return null;
+    }
+
+    @Override
     public User update(User entity) {
         throw new UnsupportedOperationException("Unimplemented method 'update'");
     }
@@ -70,11 +78,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> findAll() {
         throw new UnsupportedOperationException("Unimplemented method 'findAll'");
-    }
-
-    @Override
-    public boolean authenticate(String username, String password) {
-        throw new UnsupportedOperationException("Unimplemented method 'authenticate'");
     }
 
     @Override

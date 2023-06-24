@@ -1,4 +1,4 @@
-package com.kkp.evalapp.Services;
+package com.kkp.evalapp.services;
 
 import java.util.List;
 
@@ -33,5 +33,21 @@ public class UserServicesTest {
         }
     }
 
+    public static boolean isNumber(String input) {
+        try {
+            Long.valueOf(input);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+
+    @Test
+    void testStaticNumber(){
+        String num = "89695831597";
+
+        Assertions.assertTrue(isNumber(num));
+    }
 
 }

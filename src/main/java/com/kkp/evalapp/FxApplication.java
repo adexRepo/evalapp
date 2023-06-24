@@ -35,7 +35,7 @@ public class FxApplication extends Application {
         dataStorage.setLevels      (userService.getLevels      ());
         dataStorage.setPositions   (userService.getPositions   ());
 
-        System.out.println(dataStorage.toString());
+        // System.out.println(dataStorage.toString());
 
         FxWeaver fxWeaver = applicationContext.getBean(FxWeaver.class);
         Parent root = fxWeaver.loadView(SignupController.class);

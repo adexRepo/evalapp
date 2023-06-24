@@ -9,15 +9,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.kkp.evalapp.config.Router;
+import com.kkp.evalapp.model.ResponseData;
 import com.kkp.evalapp.service.UserService;
+import com.kkp.evalapp.utils.ComponentUi;
+import com.kkp.evalapp.utils.Validator;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import lombok.RequiredArgsConstructor;
 import net.rgielen.fxweaver.core.FxmlView;
 
 /**
@@ -26,7 +30,10 @@ import net.rgielen.fxweaver.core.FxmlView;
 
 @Component
 @FxmlView("/ui/Login.fxml")
+@RequiredArgsConstructor
 public class LoginController implements Initializable {
+    
+    private final UserService userService;
 
     @FXML
     private Button btnLogin;
@@ -36,13 +43,6 @@ public class LoginController implements Initializable {
 
     @FXML
     private TextField username;
-
-    @FXML
-    private Label lblLogin;
-
-    @Autowired
-    private UserService userService;
-
 
     @Autowired
     private Router router;
@@ -55,20 +55,20 @@ public class LoginController implements Initializable {
 
     @FXML
     private void login(ActionEvent event) throws IOException {
-        if (userService.authenticate(getUsername(), getPassword())) {
-            // router.navigate(DashboardController.class, event);
-
-        } else {
-            lblLogin.setText("Login Failed.");
+        if(!Validator.isNumber(username.getText())){
+            ComponentUi.showAlert(AlertType.ERROR, "Form Registration", "Invalid Employee ID. Please insert a numeric ID with at least 12 characters.");
+            return ;
         }
-    }
 
-    public String getPassword() {
-        return password.getText();
-    }
+        Integer employeeId = Integer.parseInt(username.getText());
+        String pass = password.getText();
 
-    public String getUsername() {
-        return username.getText();
+        ResponseData<?> res = userService.authenticate(employeeId, pass);
+
+        // if (userService.authenticate(getUsername(), getPassword())) {
+        //     // router.navigate(DashboardController.class, event);
+        // } else {
+        // }
     }
 
     // private Stage stage;

@@ -1,9 +1,9 @@
-package com.kkp.evalapp.config;
+package com.kkp.evalapp.utils;
 
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 
-public class EmailValidator {
+public class Validator {
 
     public static boolean isValidEmailAddress(String email) {
         boolean isValid = true;
@@ -16,9 +16,12 @@ public class EmailValidator {
         return isValid;
     }
 
-    public static void main(String[] args) {
-        String email = "test@example.com";
-        boolean isValidEmail = isValidEmailAddress(email);
-        System.out.println("Is email valid? " + isValidEmail);
+    public static boolean isNumber(String input) {
+        try {
+            Long.valueOf(input);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 }

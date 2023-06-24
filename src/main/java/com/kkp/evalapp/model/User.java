@@ -22,5 +22,6 @@ public class User {
     private Integer       levelId    ;
     private String        email      ;
     private String        telNo      ;
+    private String        password   ;
 
 }

@@ -21,8 +21,10 @@ public interface EvalappMapper {
 
     /* --------------------------------- Insert --------------------------------- */
     void insertNewUser(User entity);
-
+    User selectUserById(Integer id);
+    
     /* --------------------------------- Update --------------------------------- */
+    void updatePassword(User entity);
 
     /* --------------------------------- Delete --------------------------------- */
 }

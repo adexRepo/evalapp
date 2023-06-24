@@ -1,4 +1,4 @@
-package com.kkp.evalapp.Mapper;
+package com.kkp.evalapp.mapper;
 
 import java.util.List;
 
@@ -8,11 +8,12 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.kkp.evalapp.mapper.EvalappMapper;
 import com.kkp.evalapp.model.Simple;
+import com.kkp.evalapp.model.User;
+import com.kkp.evalapp.utils.PasswordEncoder;
 
 @SpringBootTest
-public class EvalappMapperTest {
+public class EvalappMapperTest{
     
     @Autowired
     private SqlSession session;
@@ -29,6 +30,24 @@ public class EvalappMapperTest {
         Assertions.assertNotNull(departements, "Must Not Null");
         Assertions.assertNotNull(levels      , "Must Not Null");
 
+    }
+
+    @Test
+    void testUpdatePasswordUser(){
+        Integer id = 123; 
+        String passwordDefault = "Test123!";
+
+        String encodedPassword = PasswordEncoder.encodePassword(passwordDefault);
+        User req = new User();
+        req.setId(id);
+        req.setPassword(encodedPassword);
+        session.getMapper(EvalappMapper.class).updatePassword      (req);
+
+        User entity = session.getMapper(EvalappMapper.class).selectUserById(id);
+
+        boolean isMatch = PasswordEncoder.matches(passwordDefault, entity.getPassword());
+
+        Assertions.assertTrue(isMatch);
     }
 
 }

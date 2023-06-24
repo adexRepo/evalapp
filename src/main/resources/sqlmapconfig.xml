@@ -30,7 +30,7 @@
      <mappers>
        <mapper resource="com/kkp/evalapp/mapper/xml/select.xml" />
        <mapper resource="com/kkp/evalapp/mapper/xml/insert.xml" />
+       <mapper resource="com/kkp/evalapp/mapper/xml/update.xml" />
  	</mappers>
- 
  
  </configuration>
