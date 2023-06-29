@@ -15,6 +15,7 @@ public class User {
 
     private Integer       id         ;
     private LocalDateTime createdAt  ;
+    private LocalDateTime updatedAt  ;
     private String        nama       ;
     private Integer       divId      ;
     private Integer       deptId     ;

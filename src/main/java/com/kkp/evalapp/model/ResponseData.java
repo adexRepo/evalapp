@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ResponseData<T> {
 
-    private String message;
     private boolean error;
+    private String message;
     private T data;
 }

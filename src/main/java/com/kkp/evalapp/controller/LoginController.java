@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.kkp.evalapp.config.Router;
@@ -34,6 +33,8 @@ import net.rgielen.fxweaver.core.FxmlView;
 public class LoginController implements Initializable {
     
     private final UserService userService;
+    
+    private final Router router;
 
     @FXML
     private Button btnLogin;
@@ -44,9 +45,6 @@ public class LoginController implements Initializable {
     @FXML
     private TextField username;
 
-    @Autowired
-    private Router router;
-
     @FXML
     void onSignup(ActionEvent event) {
 
@@ -56,19 +54,23 @@ public class LoginController implements Initializable {
     @FXML
     private void login(ActionEvent event) throws IOException {
         if(!Validator.isNumber(username.getText())){
-            ComponentUi.showAlert(AlertType.ERROR, "Form Registration", "Invalid Employee ID. Please insert a numeric ID with at least 12 characters.");
+            ComponentUi.showAlert(AlertType.ERROR, "Login Form", "Invalid Employee ID. Please insert a numeric ID with at least 12 characters.");
             return ;
         }
 
-        Integer employeeId = Integer.parseInt(username.getText());
+        // Integer employeeId = Integer.parseInt(username.getText());
+        String employeeId = username.getText();
         String pass = password.getText();
 
         ResponseData<?> res = userService.authenticate(employeeId, pass);
 
-        // if (userService.authenticate(getUsername(), getPassword())) {
-        //     // router.navigate(DashboardController.class, event);
-        // } else {
-        // }
+        if(res.isError()){
+            ComponentUi.showAlert(AlertType.ERROR, "Login Form", res.getMessage());
+            return;
+        }
+
+        System.out.println("LOGIN SUCCESS");
+        // router.navigate(DashboardController.class, event);
     }
 
     // private Stage stage;

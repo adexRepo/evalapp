@@ -21,7 +21,7 @@ public interface EvalappMapper {
 
     /* --------------------------------- Insert --------------------------------- */
     void insertNewUser(User entity);
-    User selectUserById(Integer id);
+    User selectUserById(String id);
     
     /* --------------------------------- Update --------------------------------- */
     void updatePassword(User entity);

@@ -11,6 +11,7 @@ import com.kkp.evalapp.model.ResponseData;
 import com.kkp.evalapp.model.Simple;
 import com.kkp.evalapp.model.User;
 import com.kkp.evalapp.service.UserService;
+import com.kkp.evalapp.utils.PasswordEncoder;
 
 import lombok.RequiredArgsConstructor;
 
@@ -49,10 +50,19 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public ResponseData<?> authenticate(Integer employeeId, String password) {
+    public ResponseData<?> authenticate(String employeeId, String password) {
         User user = session.getMapper(EvalappMapper.class).selectUserById(employeeId);
 
-        return null;
+        if (user == null) {
+            return new ResponseData<>(true, "Invalid Employee ID!", null);
+        }
+
+        boolean isPasswordMatch = PasswordEncoder.matches(password, user.getPassword());
+        if (!isPasswordMatch) {
+            return new ResponseData<>(true, "Incorrect Password!", null);
+        }
+
+        return new ResponseData<>(false, "Login Success!", user);
     }
 
     @Override

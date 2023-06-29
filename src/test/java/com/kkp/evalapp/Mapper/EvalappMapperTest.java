@@ -34,20 +34,26 @@ public class EvalappMapperTest{
 
     @Test
     void testUpdatePasswordUser(){
-        Integer id = 123; 
+        String id = "123"; 
         String passwordDefault = "Test123!";
 
         String encodedPassword = PasswordEncoder.encodePassword(passwordDefault);
+    
+        System.out.println("encodedPassword : "+encodedPassword);
+    
         User req = new User();
-        req.setId(id);
+        req.setId(Integer.parseInt(id));
         req.setPassword(encodedPassword);
         session.getMapper(EvalappMapper.class).updatePassword      (req);
+        System.out.println("encodedPassword : "+encodedPassword);
 
         User entity = session.getMapper(EvalappMapper.class).selectUserById(id);
+        System.out.println("entity : "+entity);
 
         boolean isMatch = PasswordEncoder.matches(passwordDefault, entity.getPassword());
 
         Assertions.assertTrue(isMatch);
     }
+    
 
 }

@@ -3,8 +3,23 @@
   'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
 <mapper namespace="com.kkp.evalapp.mapper.EvalappMapper">
     
-    <select id="selectUserById" resultType="com.kkp.evalapp.model.Simple" parameterType="Integer">
-        select * from user_base where id = #{id}
+    <select id="selectUserById" resultType="com.kkp.evalapp.model.User" parameterType="String">
+        select
+            id             as id
+            , created_at   as createdAt     
+            , updated_at   as updatedAt     
+            , nama         as nama  
+            , div_id       as divId
+            , dept_id      as deptId
+            , position_id  as positionId
+            , level_id     as levelId
+            , email        as email    
+            , tel_no       as telNo
+            , password     as password
+        from
+            users
+        where 
+            id = #{id}
     </select>
     <select id="selectPositionList" resultType="com.kkp.evalapp.model.Simple">
         select * from positions ;

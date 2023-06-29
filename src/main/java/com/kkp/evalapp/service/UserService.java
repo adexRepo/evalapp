@@ -18,7 +18,7 @@ public interface UserService {
 
     /* ------------------------------- Operational ------------------------------- */
     public void save(User entity);
-    public ResponseData<?> authenticate(Integer employeeId, String password);
+    public ResponseData<?> authenticate(String employeeId, String password);
 
     public User update(User entity);
     public void delete(User entity);
