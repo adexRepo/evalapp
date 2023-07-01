@@ -4,7 +4,7 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
 
 import com.kkp.evalapp.constats.DataStorage;
-import com.kkp.evalapp.controller.SignupController;
+import com.kkp.evalapp.controller.LoginController;
 import com.kkp.evalapp.service.UserService;
 
 import javafx.application.Application;
@@ -38,7 +38,7 @@ public class FxApplication extends Application {
         // System.out.println(dataStorage.toString());
 
         FxWeaver fxWeaver = applicationContext.getBean(FxWeaver.class);
-        Parent root = fxWeaver.loadView(SignupController.class);
+        Parent root = fxWeaver.loadView(LoginController.class);
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();

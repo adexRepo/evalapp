@@ -23,9 +23,6 @@ import javafx.scene.control.TextField;
 import lombok.RequiredArgsConstructor;
 import net.rgielen.fxweaver.core.FxmlView;
 
-/**
- * @author Odofin Timothy
- */
 
 @Component
 @FxmlView("/ui/Login.fxml")
@@ -70,7 +67,7 @@ public class LoginController implements Initializable {
         }
 
         System.out.println("LOGIN SUCCESS");
-        // router.navigate(DashboardController.class, event);
+        router.navigate(MainController.class, event);
     }
 
     // private Stage stage;

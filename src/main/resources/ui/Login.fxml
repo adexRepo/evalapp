@@ -10,72 +10,71 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/17" fx:controller="com.kkp.evalapp.controller.LoginController">
+<AnchorPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kkp.evalapp.controller.LoginController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="524.0" stroke="BLACK" strokeType="INSIDE" width="750.0" />
-      <VBox alignment="TOP_CENTER" layoutX="94.0" layoutY="98.0" prefHeight="328.0" prefWidth="563.0">
+      <HBox alignment="TOP_CENTER" prefHeight="524.0" prefWidth="750.0">
          <children>
-            <Label fx:id="lblLogin1" text="Login Evaluation App" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="30.0" />
-               </font>
-            </Label>
-            <HBox prefHeight="32.0" prefWidth="563.0" />
-            <HBox alignment="TOP_CENTER" prefHeight="24.0" prefWidth="750.0">
+            <VBox alignment="TOP_CENTER" prefHeight="524.0" prefWidth="566.0">
                <children>
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Employee ID :">
+                  <HBox prefHeight="230.0" prefWidth="377.0" />
+                  <Label fx:id="lblLogin1" alignment="CENTER" prefHeight="45.0" prefWidth="377.0" text="Evaluation" textFill="WHITE">
                      <font>
-                        <Font size="21.0" />
-                     </font>
-                  </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="    ">
-                     <font>
-                        <Font size="21.0" />
-                     </font>
-                  </Text>
-                  <TextField fx:id="username" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="228.0" promptText="Input Employee ID" />
-               </children>
-            </HBox>
-            <HBox prefHeight="24.0" prefWidth="750.0" />
-            <HBox alignment="TOP_CENTER" prefHeight="16.0" prefWidth="563.0">
-               <children>
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="     Password :">
-                     <font>
-                        <Font size="21.0" />
-                     </font>
-                  </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="    ">
-                     <font>
-                        <Font size="21.0" />
-                     </font>
-                  </Text>
-                  <PasswordField fx:id="password" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#login" prefHeight="36.0" prefWidth="229.0" promptText="Input Password" />
-               </children>
-            </HBox>
-            <HBox prefHeight="37.0" prefWidth="563.0" />
-            <HBox alignment="TOP_CENTER" prefHeight="76.0" prefWidth="563.0">
-               <children>
-                  <Button fx:id="btnLogin" mnemonicParsing="false" onAction="#login" prefHeight="52.0" prefWidth="146.0" text="Sign In" textFill="#2f2f2f">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Button>
-                  <Label fx:id="lblLogin2" prefHeight="30.0" prefWidth="52.0" text="   " textFill="WHITE">
-                     <font>
-                        <Font size="20.0" />
+                        <Font name="System Bold" size="30.0" />
                      </font>
                   </Label>
-                  <Button mnemonicParsing="false" onAction="#onSignup" prefHeight="52.0" prefWidth="146.0" text="No account yet?" textFill="#218161">
+                  <Label fx:id="lblLogin12" alignment="CENTER" prefHeight="45.0" prefWidth="377.0" text="PT. INDOFOOD Indonesia" textFill="WHITE">
                      <font>
-                        <Font name="Tahoma" size="14.0" />
+                        <Font name="System Bold" size="19.0" />
                      </font>
-                  </Button>
+                  </Label>
                </children>
-            </HBox>
+            </VBox>
+            <VBox alignment="TOP_CENTER" prefHeight="328.0" prefWidth="563.0">
+               <children>
+                  <HBox prefHeight="123.0" prefWidth="374.0" />
+                  <Label fx:id="lblLogin11" alignment="CENTER" prefHeight="45.0" prefWidth="377.0" text="Wellcome" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="30.0" />
+                     </font>
+                  </Label>
+                  <HBox prefHeight="26.0" prefWidth="374.0" />
+                  <HBox alignment="TOP_CENTER" prefHeight="24.0" prefWidth="750.0">
+                     <children>
+                        <TextField fx:id="username" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="228.0" promptText="Input Employee ID" />
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="24.0" prefWidth="750.0" />
+                  <HBox alignment="TOP_CENTER" prefHeight="16.0" prefWidth="563.0">
+                     <children>
+                        <PasswordField fx:id="password" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#login" prefHeight="36.0" prefWidth="229.0" promptText="Input Password" />
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="37.0" prefWidth="563.0" />
+                  <HBox alignment="TOP_CENTER" prefHeight="76.0" prefWidth="563.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#onSignup" prefHeight="44.0" prefWidth="114.0" text="Register" textFill="#218161">
+                           <font>
+                              <Font name="Tahoma" size="16.0" />
+                           </font>
+                        </Button>
+                        <Label fx:id="lblLogin2" prefHeight="30.0" prefWidth="37.0" text="   " textFill="WHITE">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="btnLogin" mnemonicParsing="false" onAction="#login" prefHeight="45.0" prefWidth="115.0" text="Sign In" textFill="#2f2f2f">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
          </children>
-      </VBox>
+      </HBox>
    </children>
    <opaqueInsets>
       <Insets />
