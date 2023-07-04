@@ -33,5 +33,8 @@
     <select id="selectDivisionList" resultType="com.kkp.evalapp.model.Simple">
         select * from divisions ; 
     </select>
+    <select id="selectAllMenu" resultType="com.kkp.evalapp.model.MenuItem">
+        select * from MenuItem order by id asc
+    </select>
     
 </mapper>

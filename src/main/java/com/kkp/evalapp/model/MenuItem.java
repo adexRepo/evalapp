@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
 public class MenuItem {
     private String id;
     private String parent;
-    private String key;
     private String name;
     private String image;
 }

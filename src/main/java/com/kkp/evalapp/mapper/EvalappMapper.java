@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.kkp.evalapp.model.MenuItem;
 import com.kkp.evalapp.model.Simple;
 import com.kkp.evalapp.model.User;
 
@@ -18,6 +19,7 @@ public interface EvalappMapper {
     List<Simple> selectDepartementList();
     List<Simple> selectLevelList      ();
     List<Simple> selectDivisionList   ();
+    List<MenuItem> selectAllMenu   ();
 
     /* --------------------------------- Insert --------------------------------- */
     void insertNewUser(User entity);

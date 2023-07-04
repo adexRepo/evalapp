@@ -1,7 +1,6 @@
 package com.kkp.evalapp.controller;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,6 +10,7 @@ import java.util.ResourceBundle;
 import org.springframework.stereotype.Component;
 
 import com.kkp.evalapp.model.MenuItem;
+import com.kkp.evalapp.service.MenuService;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -31,6 +31,8 @@ import net.rgielen.fxweaver.core.FxmlView;
 @RequiredArgsConstructor
 public class MainController implements Initializable {
 
+    private final MenuService menuService;
+
     @FXML
     private MenuBar menuBar;
 
@@ -48,16 +50,16 @@ public class MainController implements Initializable {
         Image image = new Image(getClass().getResourceAsStream("/images/edit.png"));
         img.setImage(image);
 
-        insertDataToTreeView(getDummyData());
+        insertDataToTreeView(menuService.getAllMenu());
         setupTreeViewItemClickHandler();
     }
 
     private void insertDataToTreeView(List<MenuItem> menuItems) {
         Map<String, TreeItem<String>> treeItemMap = new HashMap<>();
-        TreeItem<String> rootItem = new TreeItem<>(); // Create a root item
+        TreeItem<String> rootItem = new TreeItem<>("Menu"); // Create a root item with a dummy name
 
         for (MenuItem menuItem : menuItems) {
-            ImageView imgView = new ImageView(new Image(getClass().getResourceAsStream("/images/edit.png")));
+            ImageView imgView = new ImageView(new Image(getClass().getResourceAsStream("/images/"+menuItem.getImage())));
 
             TreeItem<String> treeItem = new TreeItem<>(menuItem.getName(), imgView);
             treeItemMap.put(menuItem.getId(), treeItem);
@@ -72,6 +74,12 @@ public class MainController implements Initializable {
         }
 
         tree.setRoot(rootItem); // Set the root of the tree view
+
+        // Expand the root tree item and its children
+        rootItem.setExpanded(true);
+        for (TreeItem<String> child : rootItem.getChildren()) {
+            child.setExpanded(true);
+        }
     }
 
     private void setupTreeViewItemClickHandler() {
@@ -86,40 +94,30 @@ public class MainController implements Initializable {
     }
 
     private void openNewTab(String tabName) {
-        // Check if a tab with the same name already exists
-        Optional<Tab> existingTab = tab.getTabs().stream()
-                .filter(t -> t.getText().equals(tabName))
-                .findFirst();
+        TreeItem<String> selectedItem = tree.getSelectionModel().getSelectedItem();
 
-        if (existingTab.isPresent()) {
-            // If the tab already exists, select it
-            tab.getSelectionModel().select(existingTab.get());
-        } else {
-            // Create a new tab
-            Tab newTab = new Tab(tabName);
-            // Create the content for the new tab
-            AnchorPane content = new AnchorPane();
-            // Add your desired components to the content pane
-            content.getChildren().add(new Label("Content for " + tabName));
+        if (selectedItem != null && selectedItem.getChildren().isEmpty()) {
+            // Check if a tab with the same name already exists
+            Optional<Tab> existingTab = tab.getTabs().stream()
+                    .filter(t -> t.getText().equals(tabName))
+                    .findFirst();
 
-            newTab.setContent(content);
-            tab.getTabs().add(newTab);
-            tab.getSelectionModel().select(newTab);
+            if (existingTab.isPresent()) {
+                // If the tab already exists, select it
+                tab.getSelectionModel().select(existingTab.get());
+            } else {
+                // Create a new tab
+                Tab newTab = new Tab(tabName);
+                // Create the content for the new tab
+                AnchorPane content = new AnchorPane();
+                // Add your desired components to the content pane
+                content.getChildren().add(new Label("Content for " + tabName));
+
+                newTab.setContent(content);
+                tab.getTabs().add(newTab);
+                tab.getSelectionModel().select(newTab);
+            }
         }
     }
 
-
-    private List<MenuItem> getDummyData() {
-        List<MenuItem> dummyData = new ArrayList<>();
-        // Add your dummy data here
-        dummyData.add(new MenuItem("1", null, "key1", "Item 1", "/images/edit.png"));
-        dummyData.add(new MenuItem("2", null, "key2", "Item 2", "/images/edit.png"));
-        dummyData.add(new MenuItem("3", "1", "key3", "Item 1.1", "/images/edit.png"));
-        dummyData.add(new MenuItem("4", "1", "key4", "Item 1.2", "/images/edit.png"));
-        dummyData.add(new MenuItem("5", "3", "key5", "Item 1.1.1", "/images/edit.png"));
-        dummyData.add(new MenuItem("6", null, "key6", "Item 3", "/images/edit.png"));
-        dummyData.add(new MenuItem("7", "6", "key7", "Item 3.1", "/images/edit.png"));
-        dummyData.add(new MenuItem("8", "6", "key8", "Item 3.2", "/images/edit.png"));
-        return dummyData;
-    }
 }
