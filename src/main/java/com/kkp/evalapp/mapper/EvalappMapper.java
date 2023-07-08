@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.kkp.evalapp.model.ColumnItem;
 import com.kkp.evalapp.model.MenuItem;
 import com.kkp.evalapp.model.Simple;
 import com.kkp.evalapp.model.User;
@@ -27,6 +28,7 @@ public interface EvalappMapper {
     
     /* --------------------------------- Update --------------------------------- */
     void updatePassword(User entity);
+    List<ColumnItem> selectColumnItemsByTabName(String tabName);
 
     /* --------------------------------- Delete --------------------------------- */
 }

@@ -14,7 +14,8 @@ import com.kkp.evalapp.service.MenuService;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
@@ -22,8 +23,8 @@ import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 import lombok.RequiredArgsConstructor;
+import net.rgielen.fxweaver.core.FxWeaver;
 import net.rgielen.fxweaver.core.FxmlView;
 
 @Component
@@ -32,6 +33,8 @@ import net.rgielen.fxweaver.core.FxmlView;
 public class MainController implements Initializable {
 
     private final MenuService menuService;
+
+    private final FxWeaver fxWeaver;
 
     @FXML
     private MenuBar menuBar;
@@ -59,7 +62,8 @@ public class MainController implements Initializable {
         TreeItem<String> rootItem = new TreeItem<>("Menu"); // Create a root item with a dummy name
 
         for (MenuItem menuItem : menuItems) {
-            ImageView imgView = new ImageView(new Image(getClass().getResourceAsStream("/images/"+menuItem.getImage())));
+            ImageView imgView = new ImageView(
+                    new Image(getClass().getResourceAsStream("/images/" + menuItem.getImage())));
 
             TreeItem<String> treeItem = new TreeItem<>(menuItem.getName(), imgView);
             treeItemMap.put(menuItem.getId(), treeItem);
@@ -106,14 +110,15 @@ public class MainController implements Initializable {
                 // If the tab already exists, select it
                 tab.getSelectionModel().select(existingTab.get());
             } else {
-                // Create a new tab
                 Tab newTab = new Tab(tabName);
-                // Create the content for the new tab
-                AnchorPane content = new AnchorPane();
-                // Add your desired components to the content pane
-                content.getChildren().add(new Label("Content for " + tabName));
+                // Load the FrameGrid.fxml using fxWeaver
+                FrameGridController frameGridController = fxWeaver.getBean(FrameGridController.class);
+                frameGridController.setTabName(tabName);
+                Parent root = fxWeaver.loadView(FrameGridController.class);
+                // Add the loaded content to the new tab
+                newTab.setContent(root);
 
-                newTab.setContent(content);
+                // Add the new tab to the TabPane
                 tab.getTabs().add(newTab);
                 tab.getSelectionModel().select(newTab);
             }

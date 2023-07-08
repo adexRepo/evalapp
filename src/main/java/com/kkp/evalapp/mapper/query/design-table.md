@@ -16,7 +16,7 @@ Table positions {
   name varchar
 }
 
-Table departments {
+Table departements {
   id integer [primary key]
   name varchar
 }
@@ -32,7 +32,7 @@ Table levels {
 }
 
 Ref: users.position_id > positions.id
-Ref: users.dept_id > departments.id
+Ref: users.dept_id > departements.id
 Ref: users.div_id > divisions.id
 Ref: users.level_id > levels.id
 

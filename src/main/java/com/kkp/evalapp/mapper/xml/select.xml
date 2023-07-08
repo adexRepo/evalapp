@@ -25,7 +25,7 @@
         select * from positions ;
     </select>
     <select id="selectDepartementList" resultType="com.kkp.evalapp.model.Simple">
-        select * from departments ;  
+        select * from departements ;  
     </select>
     <select id="selectLevelList" resultType="com.kkp.evalapp.model.Simple">
         select * from levels ;
@@ -35,6 +35,9 @@
     </select>
     <select id="selectAllMenu" resultType="com.kkp.evalapp.model.MenuItem">
         select * from MenuItem order by id asc
+    </select>
+    <select id="selectColumnItemsByTabName" parameterType="String" resultType="com.kkp.evalapp.model.ColumnItem">
+        select * from grid_column where tab_name =#{tabName} order by column_no asc
     </select>
     
 </mapper>

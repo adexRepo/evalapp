@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Service;
 
 import com.kkp.evalapp.mapper.EvalappMapper;
+import com.kkp.evalapp.model.ColumnItem;
 import com.kkp.evalapp.model.MenuItem;
 import com.kkp.evalapp.service.MenuService;
 
@@ -19,6 +20,11 @@ public class MenuServiceImpl implements MenuService {
     @Override
     public List<MenuItem> getAllMenu() {
         return session.getMapper(EvalappMapper.class).selectAllMenu();
+    }
+
+    @Override
+    public List<ColumnItem> getColumnByTabName(String tabName) {
+        return session.getMapper(EvalappMapper.class).selectColumnItemsByTabName(tabName);
     }
 
 }

@@ -33,7 +33,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<Simple> getDepartments() {
+    public List<Simple> getDepartements() {
         return session.getMapper(EvalappMapper.class).selectDepartementList();
     }
 

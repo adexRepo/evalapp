@@ -30,7 +30,7 @@ public class FxApplication extends Application {
     public void start(Stage stage) {
         UserService userService = applicationContext.getBean(UserService.class);
         DataStorage dataStorage = DataStorage.getInstance();
-        dataStorage.setDepartements(userService.getDepartments ());
+        dataStorage.setDepartements(userService.getDepartements ());
         dataStorage.setDivisions   (userService.getDivisions   ());
         dataStorage.setLevels      (userService.getLevels      ());
         dataStorage.setPositions   (userService.getPositions   ());
