@@ -9,12 +9,12 @@ import java.util.ResourceBundle;
 
 import org.springframework.stereotype.Component;
 
+import com.kkp.evalapp.constats.DataStorage;
 import com.kkp.evalapp.model.MenuItem;
 import com.kkp.evalapp.service.MenuService;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.Tab;
@@ -48,6 +48,8 @@ public class MainController implements Initializable {
     @FXML
     private TabPane tab;
 
+    DataStorage storage = DataStorage.getInstance();
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Image image = new Image(getClass().getResourceAsStream("/images/edit.png"));
@@ -58,6 +60,9 @@ public class MainController implements Initializable {
     }
 
     private void insertDataToTreeView(List<MenuItem> menuItems) {
+        /* ---------------------------- set singleton var --------------------------- */
+        storage.setMenuItems(menuItems);
+
         Map<String, TreeItem<String>> treeItemMap = new HashMap<>();
         TreeItem<String> rootItem = new TreeItem<>("Menu"); // Create a root item with a dummy name
 
@@ -111,14 +116,9 @@ public class MainController implements Initializable {
                 tab.getSelectionModel().select(existingTab.get());
             } else {
                 Tab newTab = new Tab(tabName);
-                // Load the FrameGrid.fxml using fxWeaver
-                FrameGridController frameGridController = fxWeaver.getBean(FrameGridController.class);
-                frameGridController.setTabName(tabName);
+                storage.setCache(tabName);
                 Parent root = fxWeaver.loadView(FrameGridController.class);
-                // Add the loaded content to the new tab
                 newTab.setContent(root);
-
-                // Add the new tab to the TabPane
                 tab.getTabs().add(newTab);
                 tab.getSelectionModel().select(newTab);
             }

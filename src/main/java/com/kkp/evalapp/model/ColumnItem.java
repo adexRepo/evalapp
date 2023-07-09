@@ -8,8 +8,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ColumnItem {
-    private String  tabName    ;
-    private String  columnName ;
-    private Integer columnNo   ;
-    private String  cellFactory;
+    private Integer id          ;
+    private Integer typeGrid    ;
+    private Integer columnNo    ;
+    private String  columnName  ;
+    private String  cellFactory ;
+    private Integer columnSize  ;
 }

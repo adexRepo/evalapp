@@ -34,10 +34,25 @@
         select * from divisions ; 
     </select>
     <select id="selectAllMenu" resultType="com.kkp.evalapp.model.MenuItem">
-        select * from MenuItem order by id asc
+        select
+            id as id
+            , parent as parent 
+            , name as name 
+            , image as image
+            , grid_id as gridId
+        from
+            menuitem m
+        order by id 
     </select>
-    <select id="selectColumnItemsByTabName" parameterType="String" resultType="com.kkp.evalapp.model.ColumnItem">
-        select * from grid_column where tab_name =#{tabName} order by column_no asc
+    <select id="selectColumnItemsByGridId" parameterType="Integer" resultType="com.kkp.evalapp.model.ColumnItem">
+        select 
+            id             as id
+            , type_grid    as typeGrid
+            , column_no    as columnNo 
+            , column_name  as columnName
+            , cell_factory as cellFactory
+            , column_size  as columnSize
+         from grid_column where type_grid = #{gridId} order by column_no asc
     </select>
     
 </mapper>

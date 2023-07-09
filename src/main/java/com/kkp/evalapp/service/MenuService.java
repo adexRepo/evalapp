@@ -8,5 +8,5 @@ import com.kkp.evalapp.model.MenuItem;
 public interface MenuService {
     List<MenuItem> getAllMenu();
 
-    List<ColumnItem> getColumnByTabName(String tabName);
+    List<ColumnItem> getColumnByGridId(Integer gridId);
 }

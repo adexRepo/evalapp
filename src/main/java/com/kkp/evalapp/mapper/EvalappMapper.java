@@ -28,7 +28,7 @@ public interface EvalappMapper {
     
     /* --------------------------------- Update --------------------------------- */
     void updatePassword(User entity);
-    List<ColumnItem> selectColumnItemsByTabName(String tabName);
+    List<ColumnItem> selectColumnItemsByGridId(Integer gridId);
 
     /* --------------------------------- Delete --------------------------------- */
 }

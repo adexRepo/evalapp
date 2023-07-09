@@ -12,4 +12,5 @@ public class MenuItem {
     private String parent;
     private String name;
     private String image;
+    private Integer gridId;
 }

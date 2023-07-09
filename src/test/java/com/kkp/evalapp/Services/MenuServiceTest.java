@@ -18,7 +18,7 @@ public class MenuServiceTest {
 
     @Test
     void testGetColumn(){
-        List<ColumnItem> lstColumn = menuService.getColumnByTabName("Template Evaluation");
+        List<ColumnItem> lstColumn = menuService.getColumnByGridId(1);
         Assertions.assertEquals(4, lstColumn.size(), "Must Correct");
     }
 }

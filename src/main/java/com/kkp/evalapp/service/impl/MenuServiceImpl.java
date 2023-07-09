@@ -23,8 +23,8 @@ public class MenuServiceImpl implements MenuService {
     }
 
     @Override
-    public List<ColumnItem> getColumnByTabName(String tabName) {
-        return session.getMapper(EvalappMapper.class).selectColumnItemsByTabName(tabName);
+    public List<ColumnItem> getColumnByGridId(Integer tabName) {
+        return session.getMapper(EvalappMapper.class).selectColumnItemsByGridId(tabName);
     }
 
 }
