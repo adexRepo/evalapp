@@ -5,6 +5,8 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.control.ScrollPane?>
+
 
 <AnchorPane layoutX="0" layoutY="0" prefHeight="280.0" prefWidth="521.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kkp.evalapp.controller.FrameGridController">
 	<children>
@@ -18,8 +20,14 @@
         </rowConstraints>
          <children>
             <fx:include fx:id="framebar" source="component/CrudBar.fxml" />
-            <TableView fx:id="frameGrid" prefHeight="165.0" prefWidth="521.0" GridPane.rowIndex="1">
-            </TableView>
+              <ScrollPane GridPane.rowIndex="1" fitToHeight="true" fitToWidth="true">
+                  <content>
+                      <TableView fx:id="frameGrid" prefHeight="165.0" prefWidth="521.0">
+                      </TableView>
+                  </content>
+              </ScrollPane>
+            <!-- <TableView fx:id="frameGrid" prefHeight="165.0" prefWidth="521.0" GridPane.rowIndex="1">
+            </TableView> -->
          </children>
       </GridPane>
 	</children>

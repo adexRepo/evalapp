@@ -1,5 +1,6 @@
 package com.kkp.evalapp.model;
 
+
 public abstract class SimpleEntity {
 
 	private Long id;

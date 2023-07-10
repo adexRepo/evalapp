@@ -23,7 +23,7 @@
                   <Font size="15.0" />
                </font>
             </Text>
-            <Text fill="WHITE" smooth="false" stroke="WHITE" strokeWidth="0.0" text="Evaluation Application" textAlignment="CENTER">
+            <Text fill="WHITE" smooth="false" stroke="WHITE" strokeWidth="0.0" text="Registration Evaluation Application" textAlignment="CENTER">
                <font>
                   <Font name="System Bold" size="30.0" />
                </font>

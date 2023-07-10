@@ -31,10 +31,10 @@
                   </Label>
                </children>
             </VBox>
-            <VBox alignment="TOP_CENTER" prefHeight="328.0" prefWidth="563.0">
+            <VBox alignment="TOP_CENTER" prefHeight="328.0" prefWidth="563.0" style="-fx-background-color: white;">
                <children>
                   <HBox prefHeight="123.0" prefWidth="374.0" />
-                  <Label fx:id="lblLogin11" alignment="CENTER" prefHeight="45.0" prefWidth="377.0" text="Wellcome" textFill="WHITE">
+                  <Label fx:id="lblLogin11" alignment="CENTER" prefHeight="45.0" prefWidth="377.0" text="Wellcome" textFill="#287bff">
                      <font>
                         <Font name="System Bold" size="30.0" />
                      </font>

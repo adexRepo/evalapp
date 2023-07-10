@@ -16,7 +16,9 @@ import com.kkp.evalapp.service.MenuService;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuBar;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TreeItem;
@@ -116,9 +118,19 @@ public class MainController implements Initializable {
                 tab.getSelectionModel().select(existingTab.get());
             } else {
                 Tab newTab = new Tab(tabName);
-                storage.setCache(tabName);
-                Parent root = fxWeaver.loadView(FrameGridController.class);
-                newTab.setContent(root);
+                boolean isGrid = storage.getMenuItems().stream()
+                        .anyMatch(val -> val.getName().equals(tabName) && val.getGridId() != null);
+                if (isGrid) {
+                    storage.setCache(tabName);
+                    Parent root = fxWeaver.loadView(FrameGridController.class);
+                    ScrollPane scrollPane = new ScrollPane(root);
+                    scrollPane.setFitToHeight(true);
+                    scrollPane.setFitToWidth(true);
+                    newTab.setContent(scrollPane);
+                } else {
+                    Label label = new Label("Still  on progress");
+                    newTab.setContent(label);
+                }
                 tab.getTabs().add(newTab);
                 tab.getSelectionModel().select(newTab);
             }

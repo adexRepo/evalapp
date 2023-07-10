@@ -54,5 +54,19 @@
             , column_size  as columnSize
          from grid_column where type_grid = #{gridId} order by column_no asc
     </select>
+    <select id="selectAllCompetency" resultType="com.kkp.evalapp.model.Competency">
+        select
+            num           as no
+            , category    as category
+            , description as dtlCategory
+            , indicator_1 as indicator1
+            , indicator_2 as indicator2
+            , indicator_3 as indicator3
+            , indicator_4 as indicator4
+            , indicator_5 as indicator5
+        from
+            competency_map
+    </select>
     
+
 </mapper>

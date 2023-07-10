@@ -5,14 +5,19 @@ import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.kkp.evalapp.constats.DataStorage;
 import com.kkp.evalapp.model.ColumnItem;
+import com.kkp.evalapp.model.Competency;
 import com.kkp.evalapp.model.MenuItem;
 import com.kkp.evalapp.model.SimpleEntity;
+import com.kkp.evalapp.service.CompetencyService;
 import com.kkp.evalapp.service.MenuService;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
@@ -22,16 +27,18 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import lombok.Data;
-import lombok.RequiredArgsConstructor;
 import net.rgielen.fxweaver.core.FxmlView;
 
 @Component
 @FxmlView("/ui/FrameGrid.fxml")
-@RequiredArgsConstructor
 @Data
 public class FrameGridController implements Initializable {
 
-    private final MenuService menuService;
+    @Autowired
+    private MenuService menuService;
+
+    @Autowired
+    private CompetencyService competencyService;
 
     @FXML
     private AnchorPane rootPane;
@@ -54,13 +61,13 @@ public class FrameGridController implements Initializable {
                 .filter((val) -> val.getName().equals(storage.getCache())).findFirst();
         List<ColumnItem> columnItems = menuService.getColumnByGridId(lstMenu.get().getGridId());
         setupGrid(columnItems);
+        loadData(storage.getCache());
     }
 
     /* ------------------------------- oprational ------------------------------- */
 
     private void setupGrid(List<ColumnItem> columnItems) {
         // System.out.println(frameGrid.toString());
-        // Create and configure the table columns
         frameGrid.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         for (ColumnItem columnItem : columnItems) {
             TableColumn<SimpleEntity, String> column = new TableColumn<>(columnItem.getColumnName());
@@ -92,4 +99,15 @@ public class FrameGridController implements Initializable {
             }
         });
     }
+
+    private void loadData(String cache) {
+        if (cache.equals("Template Evaluation")) {
+            List<Competency> lstCompetency = competencyService.getCompetencyList();
+            ObservableList<SimpleEntity> data = FXCollections.observableArrayList(lstCompetency);
+            if (data != null) {
+                frameGrid.setItems(data);
+            }
+        }
+    }
+
 }
