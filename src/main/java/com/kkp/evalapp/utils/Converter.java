@@ -10,7 +10,7 @@ import javafx.collections.ObservableList;
 
 public class Converter {
 
-    public static ObservableList<String> convertListToObservableList(List<Simple> list) {
+    public static ObservableList<String> convertListToObservableListSimple(List<Simple> list) {
 
         ObservableList<String> observableList = list.stream()
                 .map(Simple::getName)
@@ -18,5 +18,4 @@ public class Converter {
 
         return observableList;
     }
-
 }

@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.kkp.evalapp.model.ColumnItem;
 import com.kkp.evalapp.model.Competency;
+import com.kkp.evalapp.model.CompetencyScale;
 import com.kkp.evalapp.model.MenuItem;
 import com.kkp.evalapp.model.Simple;
 import com.kkp.evalapp.model.User;
@@ -25,6 +26,7 @@ public interface EvalappMapper {
     User selectUserById(String id);
     List<ColumnItem> selectColumnItemsByGridId(Integer gridId);
     List<Competency> selectAllCompetency();
+    List<CompetencyScale> selectAllCompetencyScale();
 
     /* --------------------------------- Insert --------------------------------- */
     void insertNewUser(User entity);

@@ -3,21 +3,21 @@ package com.kkp.evalapp.model;
 
 public abstract class SimpleEntity {
 
-	private Long id;
+	private Integer id;
 
 	protected SimpleEntity() {
 		super();
 	}
 
-	public SimpleEntity(Long id) {
+	public SimpleEntity(Integer id) {
 		this.id = id;
 	}
 
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	protected void setId(Long id) {
+	protected void setId(Integer id) {
 		this.id = id;
 	}
 }

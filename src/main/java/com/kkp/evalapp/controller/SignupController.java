@@ -76,10 +76,10 @@ public class SignupController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         DataStorage dataStorage = DataStorage.getInstance();
-        boxPosition    .setItems((Converter.convertListToObservableList(dataStorage.getPositions   () )) );
-        boxDivision    .setItems((Converter.convertListToObservableList(dataStorage.getDivisions   () )) );
-        boxDepartement .setItems((Converter.convertListToObservableList(dataStorage.getDepartements() )) );
-        boxLevel       .setItems((Converter.convertListToObservableList(dataStorage.getLevels      () )) );
+        boxPosition    .setItems((Converter.convertListToObservableListSimple(dataStorage.getPositions   () )) );
+        boxDivision    .setItems((Converter.convertListToObservableListSimple(dataStorage.getDivisions   () )) );
+        boxDepartement .setItems((Converter.convertListToObservableListSimple(dataStorage.getDepartements() )) );
+        boxLevel       .setItems((Converter.convertListToObservableListSimple(dataStorage.getLevels      () )) );
     }
 
 

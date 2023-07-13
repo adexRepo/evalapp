@@ -56,7 +56,8 @@
     </select>
     <select id="selectAllCompetency" resultType="com.kkp.evalapp.model.Competency">
         select
-            num           as no
+            id            as compMapId
+            , num         as no
             , category    as category
             , description as dtlCategory
             , indicator_1 as indicator1
@@ -66,7 +67,11 @@
             , indicator_5 as indicator5
         from
             competency_map
+        order by num asc
     </select>
     
+    <select id="selectAllCompetencyScale" resultType="com.kkp.evalapp.model.CompetencyScale">
+        select * from competency_scale order by score
+    </select>
 
 </mapper>

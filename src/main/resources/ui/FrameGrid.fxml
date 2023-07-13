@@ -26,8 +26,6 @@
                       </TableView>
                   </content>
               </ScrollPane>
-            <!-- <TableView fx:id="frameGrid" prefHeight="165.0" prefWidth="521.0" GridPane.rowIndex="1">
-            </TableView> -->
          </children>
       </GridPane>
 	</children>

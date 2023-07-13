@@ -18,7 +18,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuBar;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TreeItem;
@@ -123,13 +122,15 @@ public class MainController implements Initializable {
                 if (isGrid) {
                     storage.setCache(tabName);
                     Parent root = fxWeaver.loadView(FrameGridController.class);
-                    ScrollPane scrollPane = new ScrollPane(root);
-                    scrollPane.setFitToHeight(true);
-                    scrollPane.setFitToWidth(true);
-                    newTab.setContent(scrollPane);
+                    newTab.setContent(root);
                 } else {
-                    Label label = new Label("Still  on progress");
-                    newTab.setContent(label);
+                    if(tabName.equals("Isi Evaluasi")){
+                        Parent root = fxWeaver.loadView(CompetencyBasicController.class);
+                        newTab.setContent(root);
+                    }else{
+                        Label label = new Label("Still  on progress");
+                        newTab.setContent(label);
+                    }
                 }
                 tab.getTabs().add(newTab);
                 tab.getSelectionModel().select(newTab);

@@ -67,7 +67,6 @@ public class FrameGridController implements Initializable {
     /* ------------------------------- oprational ------------------------------- */
 
     private void setupGrid(List<ColumnItem> columnItems) {
-        // System.out.println(frameGrid.toString());
         frameGrid.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         for (ColumnItem columnItem : columnItems) {
             TableColumn<SimpleEntity, String> column = new TableColumn<>(columnItem.getColumnName());

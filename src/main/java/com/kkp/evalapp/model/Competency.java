@@ -11,6 +11,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString @EqualsAndHashCode(callSuper=false)
 public class Competency extends SimpleEntity{
+    private Integer compMapId;
     private Integer no;
     private String category;
     private String dtlCategory;

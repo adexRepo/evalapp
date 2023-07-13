@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.kkp.evalapp.mapper.EvalappMapper;
 import com.kkp.evalapp.model.Competency;
+import com.kkp.evalapp.model.CompetencyScale;
 import com.kkp.evalapp.service.CompetencyService;
 
 import lombok.RequiredArgsConstructor;
@@ -19,5 +20,10 @@ public class CompetencyServiceImpl implements CompetencyService{
     @Override
     public List<Competency> getCompetencyList() {
         return session.getMapper(EvalappMapper.class).selectAllCompetency();
+    }
+
+    @Override
+    public List<CompetencyScale> getCompetencyScale() {
+        return session.getMapper(EvalappMapper.class).selectAllCompetencyScale();
     }
 }
