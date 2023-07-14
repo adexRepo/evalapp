@@ -3,7 +3,9 @@ package com.kkp.evalapp.controller;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -87,8 +89,11 @@ public class CompetencyBasicController implements Initializable {
     private ComboBox<Items> nilaiComboBox;
 
     private List<Competency> lstCompetency;
+    private List<Items> lstItemsCbb;
     private List<ScoreMap> lstScoreMap;
-    private Integer currentContent;
+    private Integer currentIdx;
+    private Integer beforeIdx;
+    private Integer afterIdx;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -99,11 +104,14 @@ public class CompetencyBasicController implements Initializable {
     }
 
     private void loadCompetencyBasicContent(Competency comp) {
-        currentContent = comp.getNo();
+        currentIdx = comp.getNo() - 1;
+        beforeIdx  = currentIdx - 1;
+        afterIdx   = currentIdx + 1;
+        
         noTextField.setText(comp.getNo().toString());
         category.setText(comp.getCategory());
         dtlCategory.setText(comp.getDtlCategory());
-        String progressCount = currentContent + "/" + lstCompetency.size();
+        String progressCount = comp.getNo() + "/" + lstCompetency.size();
         progressLabel.setText(progressCount);
 
         List<String> lstItem = new ArrayList<>();
@@ -113,6 +121,21 @@ public class CompetencyBasicController implements Initializable {
         lstItem.add(comp.getIndicator4() == null ? "" : comp.getIndicator4());
         lstItem.add(comp.getIndicator5() == null ? "" : comp.getIndicator5());
         lstIndicator.getItems().addAll(lstItem);
+
+        if (comp.getNo() != lstCompetency.size()) {
+            btnSubmit.disableProperty().set(true);
+            btnNext.disableProperty().set(false);
+        }else{
+            btnNext.disableProperty().set(true);
+            btnSubmit.disableProperty().set(false);
+        }
+
+        if (comp.getNo() == 1) {
+            btnBack.disableProperty().set(true);
+        } else {
+            btnBack.disableProperty().set(false);
+        }
+
     }
 
     private void loadNilai() {
@@ -124,6 +147,7 @@ public class CompetencyBasicController implements Initializable {
             lstItem.add(item);
         }
         nilaiComboBox.getItems().addAll(lstItem);
+        lstItemsCbb = lstItem;
     }
 
     @FXML
@@ -135,16 +159,39 @@ public class CompetencyBasicController implements Initializable {
                     "Cannot proceed to the next step. Please choose a value for 'Nilai' first!");
             return;
         }
-        Competency comp = lstCompetency.get(0);
-        doGetScore(comp, selectedItem.getId());
+        Competency currentComp = lstCompetency.get(currentIdx);
+        changeDataCurrent(currentComp, selectedItem.getId());
+        Competency nextComp = lstCompetency.get(afterIdx);
+        Optional<ScoreMap> score = lstScoreMap.stream()
+            .filter(val -> val.getNum().equals(nextComp.getNo()))
+            .findFirst();
         doReset();
-        if (currentContent == lstCompetency.size()) {
-            // do something when finish
-        } else {
-            Competency tgtNext = lstCompetency.get(currentContent);
-            loadCompetencyBasicContent(tgtNext);
+        if(score.isPresent()){
+            Optional<Items> item = lstItemsCbb.stream()
+                    .filter(val -> val.getId().equals(score.get().getScaleId()))
+                    .findFirst();
+            item.ifPresent(i -> nilaiComboBox.setValue(i));
         }
+        loadCompetencyBasicContent(nextComp);
         System.out.println(lstScoreMap.toString());
+    }
+
+    private void changeDataCurrent(Competency comp, Integer scale) {
+        Optional<ScoreMap> score = lstScoreMap.stream()
+                .filter(val -> val.getNum().equals(comp.getNo()))
+                .findFirst();
+        if(score.isPresent() ){
+            if(!(score.get().getScaleId().equals(scale))){
+                lstScoreMap = lstScoreMap.stream()
+                    .peek(map -> {
+                        if(map.getNum().equals(comp.getNo())){
+                            map.setScaleId(scale);
+                        }
+                    }).collect(Collectors.toList());
+            }
+        }else{
+            doGetScore(comp,scale);
+        }
     }
 
     private void doGetScore(Competency comp, Integer scaleId) {
@@ -165,12 +212,32 @@ public class CompetencyBasicController implements Initializable {
 
     @FXML
     private void handleBtnSubmit() {
-        // Add your logic here for the Next button
+        Items selectedItem = nilaiComboBox.getValue();
+        if (selectedItem == null) {
+            ComponentUi.showAlert(AlertType.ERROR, "Form Evaluation",
+                    "Cannot proceed to the Submit Evaluation. Please choose a value for 'Nilai' first!");
+            return;
+        }
+
+        // do generate evaluation id and save into db
     }
 
     @FXML
     private void handleBtnBack() {
-        // Add your logic here for the Next button
+        Competency beforeComp = lstCompetency.get(beforeIdx);
+        System.out.println("currentIdx handleBtnBack :" + currentIdx);
+        Optional<ScoreMap> score = lstScoreMap.stream()
+                .filter(val -> val.getNum().equals(beforeComp.getNo()))
+                .findFirst();
+        doReset();
+        if (score.isPresent()) {
+            Optional<Items> item = lstItemsCbb.stream()
+                    .filter(val -> val.getId().equals(score.get().getScaleId()))
+                    .findFirst();
+            item.ifPresent(i -> nilaiComboBox.setValue(i));
+        }
+        loadCompetencyBasicContent(beforeComp);
+        System.out.println(lstScoreMap.toString());
     }
 
 }
