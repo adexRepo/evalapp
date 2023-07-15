@@ -10,25 +10,25 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="509.0" prefWidth="691.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kkp.evalapp.controller.CompetencyBasicController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="509.0" prefWidth="671.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kkp.evalapp.controller.CompetencyBasicController">
    <children>
-      <Label layoutX="136.0" layoutY="23.0" text="Form Pengisian Evaluasi Competency">
+      <Label layoutX="23.0" layoutY="15.0" text="Form Pengisian Evaluasi Competency">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Label layoutX="244.0" layoutY="87.0" text="Category" textFill="#141414">
+      <Label layoutX="262.0" layoutY="87.0" text="Category" textFill="#141414">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <TextField fx:id="category" editable="false" layoutX="323.0" layoutY="87.0" prefHeight="25.0" prefWidth="307.0" />
+      <TextField fx:id="category" editable="false" layoutX="341.0" layoutY="87.0" prefHeight="25.0" prefWidth="307.0" />
       <TextArea fx:id="dtlCategory" editable="false" layoutX="116.0" layoutY="119.0" prefHeight="68.0" prefWidth="532.0" wrapText="true" />
       <ListView fx:id="lstIndicator" layoutX="114.0" layoutY="200.0" prefHeight="172.0" prefWidth="532.0" stylesheets="@../styles/Styles.css" />
       <ButtonBar prefHeight="40.0" prefWidth="200.0" />
-      <Button fx:id="btnNext" layoutX="510.0" layoutY="432.0" mnemonicParsing="false" onAction="#handleBtnNext" prefHeight="41.0" prefWidth="64.0" text="Next" />
+      <Button fx:id="btnNext" layoutX="413.0" layoutY="432.0" mnemonicParsing="false" onAction="#handleBtnNext" prefHeight="41.0" prefWidth="64.0" text="Next" />
       <Button fx:id="btnSubmit" layoutX="584.0" layoutY="432.0" mnemonicParsing="false" onAction="#handleBtnSubmit" prefHeight="41.0" prefWidth="64.0" text="Submit" />
-      <Button fx:id="btnBack" layoutX="433.0" layoutY="432.0" mnemonicParsing="false" onAction="#handleBtnBack" prefHeight="41.0" prefWidth="64.0" text="Back" />
+      <Button fx:id="btnBack" layoutX="336.0" layoutY="432.0" mnemonicParsing="false" onAction="#handleBtnBack" prefHeight="41.0" prefWidth="64.0" text="Back" />
       <TextField fx:id="noTextField" editable="false" layoutX="115.0" layoutY="87.0" prefHeight="25.0" prefWidth="57.0" />
       <Label layoutX="23.0" layoutY="119.0" text="Description" textFill="#141414">
          <font>
@@ -56,5 +56,7 @@
          </font>
       </Label>
       <ComboBox fx:id="nilaiComboBox" layoutX="116.0" layoutY="388.0" prefHeight="25.0" prefWidth="307.0" promptText="Pilih Nilai" />
+      <TextField editable="false" layoutX="499.0" layoutY="20.0" prefHeight="25.0" prefWidth="150.0" promptText="ID Karyawan" />
+      <Button fx:id="btnTeknikal" layoutX="492.0" layoutY="432.0" mnemonicParsing="false" onAction="#handleBtnTeknikal" prefHeight="41.0" prefWidth="81.0" text="Isi Teknikal" />
    </children>
 </AnchorPane>

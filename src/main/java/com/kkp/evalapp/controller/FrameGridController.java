@@ -49,7 +49,7 @@ public class FrameGridController implements Initializable {
     @FXML
     private TableView<SimpleEntity> frameGrid;
 
-    @FXML
+    @Autowired
     private CrudBarController crudBarController;
 
     DataStorage storage = DataStorage.getInstance();
@@ -57,11 +57,12 @@ public class FrameGridController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // Initialize any necessary components or perform additional setup
+        String tabName = storage.getCache().get("tabName").toString();
         Optional<MenuItem> lstMenu = storage.getMenuItems().stream()
-                .filter((val) -> val.getName().equals(storage.getCache())).findFirst();
+                .filter((val) -> val.getName().equals(tabName)).findFirst();
         List<ColumnItem> columnItems = menuService.getColumnByGridId(lstMenu.get().getGridId());
         setupGrid(columnItems);
-        loadData(storage.getCache());
+        loadData(tabName);
     }
 
     /* ------------------------------- oprational ------------------------------- */
@@ -100,7 +101,7 @@ public class FrameGridController implements Initializable {
     }
 
     private void loadData(String cache) {
-        if (cache.equals("Template Evaluation")) {
+        if (cache.equals("Indicator Evaluasi")) {
             List<Competency> lstCompetency = competencyService.getCompetencyList();
             ObservableList<SimpleEntity> data = FXCollections.observableArrayList(lstCompetency);
             if (data != null) {

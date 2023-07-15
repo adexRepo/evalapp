@@ -2,20 +2,26 @@ package com.kkp.evalapp.controller;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.ui.Model;
 
+import com.kkp.evalapp.constats.DataStorage;
 import com.kkp.evalapp.model.Competency;
 import com.kkp.evalapp.model.CompetencyScale;
 import com.kkp.evalapp.model.Items;
 import com.kkp.evalapp.model.ScoreMap;
+import com.kkp.evalapp.model.TeknikalCompetency;
 import com.kkp.evalapp.service.CompetencyService;
 import com.kkp.evalapp.utils.ComponentUi;
+import com.kkp.evalapp.utils.PopupUtil;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -32,7 +38,7 @@ import net.rgielen.fxweaver.core.FxmlView;
 
 @Component
 @FxmlView("/ui/biz/EvaluasiKompetensiDasar.fxml")
-public class CompetencyBasicController implements Initializable {
+public class CompetencyBasicController implements Initializable  {
 
     @Autowired
     private CompetencyService competencyService;
@@ -63,6 +69,9 @@ public class CompetencyBasicController implements Initializable {
 
     @FXML
     private Button btnSubmit;
+
+    @FXML
+    private Button btnTeknikal;
 
     @FXML
     private Button btnBack;
@@ -101,13 +110,14 @@ public class CompetencyBasicController implements Initializable {
         lstCompetency = competencyService.getCompetencyList();
         loadNilai();
         loadCompetencyBasicContent(lstCompetency.get(0));
+        btnTeknikal.disableProperty().set(true);
     }
 
     private void loadCompetencyBasicContent(Competency comp) {
         currentIdx = comp.getNo() - 1;
-        beforeIdx  = currentIdx - 1;
-        afterIdx   = currentIdx + 1;
-        
+        beforeIdx = currentIdx - 1;
+        afterIdx = currentIdx + 1;
+
         noTextField.setText(comp.getNo().toString());
         category.setText(comp.getCategory());
         dtlCategory.setText(comp.getDtlCategory());
@@ -125,9 +135,6 @@ public class CompetencyBasicController implements Initializable {
         if (comp.getNo() != lstCompetency.size()) {
             btnSubmit.disableProperty().set(true);
             btnNext.disableProperty().set(false);
-        }else{
-            btnNext.disableProperty().set(true);
-            btnSubmit.disableProperty().set(false);
         }
 
         if (comp.getNo() == 1) {
@@ -163,34 +170,39 @@ public class CompetencyBasicController implements Initializable {
         changeDataCurrent(currentComp, selectedItem.getId());
         Competency nextComp = lstCompetency.get(afterIdx);
         Optional<ScoreMap> score = lstScoreMap.stream()
-            .filter(val -> val.getNum().equals(nextComp.getNo()))
-            .findFirst();
+                .filter(val -> val.getNum().equals(nextComp.getNo()))
+                .findFirst();
         doReset();
-        if(score.isPresent()){
+        if (score.isPresent()) {
             Optional<Items> item = lstItemsCbb.stream()
                     .filter(val -> val.getId().equals(score.get().getScaleId()))
                     .findFirst();
             item.ifPresent(i -> nilaiComboBox.setValue(i));
         }
-        loadCompetencyBasicContent(nextComp);
-        System.out.println(lstScoreMap.toString());
+        if(currentComp.getNo() == lstCompetency.size()){
+            btnNext.disableProperty().set(true);
+            btnSubmit.disableProperty().set(false);
+            btnTeknikal.disableProperty().set(false);
+        }else{
+            loadCompetencyBasicContent(nextComp);
+        }
     }
 
     private void changeDataCurrent(Competency comp, Integer scale) {
         Optional<ScoreMap> score = lstScoreMap.stream()
                 .filter(val -> val.getNum().equals(comp.getNo()))
                 .findFirst();
-        if(score.isPresent() ){
-            if(!(score.get().getScaleId().equals(scale))){
+        if (score.isPresent()) {
+            if (!(score.get().getScaleId().equals(scale))) {
                 lstScoreMap = lstScoreMap.stream()
-                    .peek(map -> {
-                        if(map.getNum().equals(comp.getNo())){
-                            map.setScaleId(scale);
-                        }
-                    }).collect(Collectors.toList());
+                        .peek(map -> {
+                            if (map.getNum().equals(comp.getNo())) {
+                                map.setScaleId(scale);
+                            }
+                        }).collect(Collectors.toList());
             }
-        }else{
-            doGetScore(comp,scale);
+        } else {
+            doGetScore(comp, scale);
         }
     }
 
@@ -211,6 +223,7 @@ public class CompetencyBasicController implements Initializable {
     }
 
     @FXML
+    @SuppressWarnings("unchecked")
     private void handleBtnSubmit() {
         Items selectedItem = nilaiComboBox.getValue();
         if (selectedItem == null) {
@@ -218,14 +231,16 @@ public class CompetencyBasicController implements Initializable {
                     "Cannot proceed to the Submit Evaluation. Please choose a value for 'Nilai' first!");
             return;
         }
-
-        // do generate evaluation id and save into db
+        // save to db
+        List<ScoreMap> lstScore = lstScoreMap;
+        List<TeknikalCompetency> lstTeknikal = (List<TeknikalCompetency>) DataStorage.getInstance().getCache().get("listTeknikal");
+        Integer evaluationId = 1; // for now like this, need to get from first time initate
+        competencyService.saveEvaluationCompetency(evaluationId, lstScore, lstTeknikal);
     }
 
     @FXML
     private void handleBtnBack() {
         Competency beforeComp = lstCompetency.get(beforeIdx);
-        System.out.println("currentIdx handleBtnBack :" + currentIdx);
         Optional<ScoreMap> score = lstScoreMap.stream()
                 .filter(val -> val.getNum().equals(beforeComp.getNo()))
                 .findFirst();
@@ -237,7 +252,14 @@ public class CompetencyBasicController implements Initializable {
             item.ifPresent(i -> nilaiComboBox.setValue(i));
         }
         loadCompetencyBasicContent(beforeComp);
-        System.out.println(lstScoreMap.toString());
+    }
+
+    @FXML
+    private void handleBtnTeknikal() {
+        Map<String, Object> parameterMap = new HashMap<>();
+        parameterMap.put("fxmlPath", "/ui/biz/TeknikalCompetency.fxml");
+        DataStorage.getInstance().getCache().put("listTeknikal", new ArrayList<TeknikalCompetency>());
+        PopupUtil.showPopup(TechnicalCompetencyController.class, parameterMap);
     }
 
 }

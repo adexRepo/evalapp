@@ -8,4 +8,37 @@
         VALUES (#{id}, #{createdAt}, #{nama}, #{divId}, #{deptId}, #{positionId}, #{levelId}, #{email}, #{telNo})
     </insert>
 
+    <!-- evaluationRelationMapper.xml -->
+    <insert id="insertNewIntoEvaluationRelation" parameterType="com.kkp.evalapp.model.EvaluationRelation">
+      INSERT INTO evaluation_relation (evaluation_id, evaluated_id, evaluator_id_1, evaluator_id_2)
+      VALUES (#{evaluationId}, #{evaluatedId}, #{evaluatorId1}, #{evaluatorId2})
+    </insert>
+
+    <insert id="insertNewIntoEvaluationBase" parameterType="com.kkp.evalapp.model.EvaluationBase">
+      INSERT INTO evaluation_base (id, created_at, updated_at, start_dt, end_dt)
+      VALUES (#{id}, SYSDATE(), SYSDATE(), #{startDt}, #{endDt})
+    </insert>
+    
+    <insert id="insertIntoCompetencyTeknikal" parameterType="Map">
+      INSERT INTO competency_teknikal (evaluation_id, id, description, scale_id)
+      VALUES (#{evaluationId}, #{id}, #{description}, #{scaleId});
+    </insert>
+    
+    <insert id="insertIntoCompetencyScoreMap" parameterType="Map">
+      INSERT INTO competency_score_map (evaluation_id, comp_map_id, num, scale_id)
+      VALUES (#{evaluationId}, #{compMapId}, #{num}, #{scaleId})
+    </insert>
+
+    <insert id="insertIntoCompetencyScoreBase" parameterType="Map">
+      INSERT INTO competency_score_base (evaluation_id, count_competencies, sum_score_competencies, final_result_competencies)
+      VALUES (#{evaluationId}, #{countCompetency}, #{sumScoreCompetency}, #{finalResultCompetency})
+    </insert>
+
+    <insert id="insertIntoEvaluationResultAll" parameterType="Map">
+      INSERT INTO evaluation_result_all (evaluation_id, id, factor, final_score_a, final_score_b, final_weight)
+      VALUES (#{evaluationId}, #{id}, #{factor}, #{finalScoreA}, #{finalScoreB}, #{finalWeight})
+    </insert>
+
+
+
 </mapper>

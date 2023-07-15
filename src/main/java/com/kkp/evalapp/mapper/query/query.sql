@@ -39,18 +39,18 @@ name VARCHAR(255)
 -- Tabel evaluation_base
 CREATE TABLE evaluation_base (
   id INTEGER AUTO_INCREMENT PRIMARY KEY,
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  start_dt TIMESTAMP,
-  end_dt TIMESTAMP,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  start_dt varchar(12),
+  end_dt varchar(12),
   addendum VARCHAR(1000),
   to_hrd VARCHAR(1)
-);
+)auto_increment = 1;
 
 -- Tabel evaluation_result_all
 CREATE TABLE evaluation_result_all (
   evaluation_id INTEGER,
-  id INTEGER AUTO_INCREMENT,
+  id INTEGER ,
   factor INTEGER,
   final_score_a DOUBLE,
   final_score_b INTEGER,
@@ -60,6 +60,7 @@ CREATE TABLE evaluation_result_all (
   PRIMARY KEY (evaluation_id, id),
   FOREIGN KEY (evaluation_id) REFERENCES evaluation_base(id)
 );
+
 
 -- Tabel plan_development
 CREATE TABLE plan_development (
@@ -89,18 +90,19 @@ CREATE TABLE evaluation_relation (
   evaluated_id INTEGER,
   evaluator_id_1 INTEGER,
   evaluator_id_2 INTEGER,
-  sign_plan_evaluated_at TIMESTAMP,
-  sign_plan_evaluator1_at TIMESTAMP,
-  sign_plan_evaluator2_at TIMESTAMP,
-  sign_result_evaluated_at TIMESTAMP,
-  sign_result_evaluator1_at TIMESTAMP,
-  sign_result_evaluator2_at TIMESTAMP,
+  sign_plan_evaluated_at Date,
+  sign_plan_evaluator1_at Date,
+  sign_plan_evaluator2_at Date,
+  sign_result_evaluated_at Date,
+  sign_result_evaluator1_at Date,
+  sign_result_evaluator2_at Date,
   PRIMARY KEY (evaluation_id),
   FOREIGN KEY (evaluation_id) REFERENCES evaluation_base(id),
   FOREIGN KEY (evaluated_id) REFERENCES users(id),
   FOREIGN KEY (evaluator_id_1) REFERENCES users(id),
   FOREIGN KEY (evaluator_id_2) REFERENCES users(id)
 );
+
 
 -- Tabel work_goals_base
 CREATE TABLE work_goals_base (

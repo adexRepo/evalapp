@@ -139,37 +139,56 @@ Table competency_scale {
   remark varchar
 }
 
-Table competency_map {
-  id integer [primary key]
-  no integer [primary key]
-  created_at timestamp
-  updated_at timestamp
-  type integer
-  category varchar
-  description varchar
-  indicator_1 varchar
-  indicator_2 varchar
-  indicator_3 varchar
-  indicator_4 varchar
-  indicator_5 varchar
-  score integer
-}
-
 Table type_competency {
   id integer [primary key]
   name varchar
 }
 
-Table competency_score_base {
-  evaluation_id integer [primary key]
-  comp_map_id integer
-  count_competencies integer
-  sum_score_competencies integer
-  final_result_competencies integer
+Table competency_score_map {
+  evaluation_id int [pk]
+  id int [pk, increment]
+  comp_map_id int [not null]
+  num int [not null]
+  created_at timestamp [not null, default: `current_timestamp()`]
+  updated_at timestamp [not null, default: `current_timestamp()`]
+  scale_id int
 }
 
+Table competency_map {
+  id int [pk, increment]
+  num int [not null]
+  created_at timestamp [not null, default: `current_timestamp()`]
+  updated_at timestamp [not null, default: `current_timestamp()`]
+  type_comp int
+  category varchar(255)
+  description varchar(255)
+  indicator_1 varchar(255)
+  indicator_2 varchar(255)
+  indicator_3 varchar(255)
+  indicator_4 varchar(255)
+  indicator_5 varchar(255)
+}
+
+
+Table competency_teknikal {
+  evaluation_id int [pk]
+  id int [pk]
+  description varchar(500)
+  scale_id int
+}
+
+
+Table competency_score_base {
+  evaluation_id int [pk]
+  comp_score_map_id int
+  count_competencies int
+  sum_score_competencies int
+  final_result_competencies int
+}
+
+Ref: competency_score_map.evaluation_id < competency_score_base.evaluation_id
 Ref: work_goals_map.param_b > work_scale.id
-Ref: competency_map.score > competency_scale.id
-Ref: competency_map.id > competency_score_base.evaluation_id
-Ref: competency_map.type > type_competency.id
+Ref: competency_teknikal.evaluation_id > competency_score_base.evaluation_id
+Ref: competency_map.id > competency_score_map.comp_map_id
+Ref: competency_map.type_comp > type_competency.id
 Ref: evaluation_base.id < competency_score_base.evaluation_id

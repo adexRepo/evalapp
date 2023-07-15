@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC '-//mybatis.org//DTD Mapper 3.0//EN'
   'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
 <mapper namespace="com.kkp.evalapp.mapper.EvalappMapper">
-    
+    <!-- user -->
     <select id="selectUserById" resultType="com.kkp.evalapp.model.User" parameterType="String">
         select
             id             as id
@@ -33,6 +33,8 @@
     <select id="selectDivisionList" resultType="com.kkp.evalapp.model.Simple">
         select * from divisions ; 
     </select>
+
+    <!-- menu -->
     <select id="selectAllMenu" resultType="com.kkp.evalapp.model.MenuItem">
         select
             id as id
@@ -54,6 +56,8 @@
             , column_size  as columnSize
          from grid_column where type_grid = #{gridId} order by column_no asc
     </select>
+
+    <!-- competency -->
     <select id="selectAllCompetency" resultType="com.kkp.evalapp.model.Competency">
         select
             id            as compMapId
@@ -73,5 +77,51 @@
     <select id="selectAllCompetencyScale" resultType="com.kkp.evalapp.model.CompetencyScale">
         select * from competency_scale order by score
     </select>
+
+    <!-- evaluation -->
+    <select id="selectCurrentEvaluationBaseId" resultType="INTEGER">
+        select count(*) as cnt from evaluation_base
+    </select>
+    <select id="selectEvaluationBaseById" parameterType="Integer" resultType="com.kkp.evalapp.model.EvaluationBase">
+        select
+            id as id
+            , created_at as createdAt
+            , updated_at as updatedAt
+            , start_dt   as startDt  
+            , end_dt     as endDt    
+            , addendum   as addendum 
+            , to_hrd     as toHrd    
+        from
+            evaluation_base
+        where 
+            id = #{evaluationId}
+    </select>
+    <select id="selectSumCompetencyBasicAndTeknikal" parameterType="Map" resultType="INTEGER">
+        select 
+            (a.basicComp + b.teknikalComp) totalScore
+            from
+            (
+                select
+                    sum(cs.score) as basicComp
+                from
+                    competency_score_map csm,
+                    competency_scale cs
+                where
+                    csm.evaluation_id = #{evaluationId}
+                    and csm.comp_map_id = #{compMapId}
+                    and csm.scale_id = cs.id 
+            ) a,
+            (
+                select
+                    sum(cs.score) as teknikalComp
+                from
+                    competency_teknikal ct,
+                    competency_scale cs
+                where
+                    ct.evaluation_id = #{evaluationId}
+                    and ct.scale_id = cs.id 
+            ) b
+    </select>
+
 
 </mapper>

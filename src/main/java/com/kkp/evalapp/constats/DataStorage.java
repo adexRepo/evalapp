@@ -1,7 +1,9 @@
 package com.kkp.evalapp.constats;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.kkp.evalapp.model.MenuItem;
 import com.kkp.evalapp.model.Simple;
@@ -19,7 +21,7 @@ public class DataStorage {
     private List<Simple> departements ;
     private List<Simple> levels       ;
     private List<MenuItem> menuItems  ;
-    private String cache;
+    private Map<String,Object> cache;
 
     private DataStorage (){
         positions    = new ArrayList<Simple>();
@@ -27,7 +29,7 @@ public class DataStorage {
         departements = new ArrayList<Simple>();
         levels       = new ArrayList<Simple>();
         menuItems    = new ArrayList<MenuItem>();
-        cache        = new String();
+        cache        = new HashMap<>();
     }
 
     public static DataStorage getInstance() {

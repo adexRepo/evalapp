@@ -120,12 +120,13 @@ public class MainController implements Initializable {
                 boolean isGrid = storage.getMenuItems().stream()
                         .anyMatch(val -> val.getName().equals(tabName) && val.getGridId() != null);
                 if (isGrid) {
-                    storage.setCache(tabName);
+                    storage.getCache().put("tabName", tabName);
                     Parent root = fxWeaver.loadView(FrameGridController.class);
                     newTab.setContent(root);
                 } else {
                     if(tabName.equals("Isi Evaluasi")){
-                        Parent root = fxWeaver.loadView(CompetencyBasicController.class);
+                        // Parent root = fxWeaver.loadView(CompetencyBasicController.class);
+                        Parent root = fxWeaver.loadView(TechnicalCompetencyController.class);
                         newTab.setContent(root);
                     }else{
                         Label label = new Label("Still  on progress");
