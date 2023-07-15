@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="585.0" prefWidth="692.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" fx:controller="com.kkp.evalapp.controller.WorkGoalsController" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="585.0" prefWidth="692.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label layoutX="19.0" layoutY="20.0" text="Form Sasaran Kerja">
          <font>
@@ -20,20 +20,20 @@
       </Label>
       <ScrollPane layoutX="19.0" layoutY="269.0" prefHeight="252.0" prefWidth="660.0">
          <content>
-            <TableView editable="true" prefHeight="242.0" prefWidth="794.0">
+            <TableView fx:id="tabelSasaran" editable="true" onMouseClicked="#handleTableSelection" prefHeight="242.0" prefWidth="794.0">
               <columns>
-                <TableColumn prefWidth="52.0" text="No" />
-                <TableColumn prefWidth="199.0" text="Sasaran Kerja" />
-                  <TableColumn prefWidth="173.0" text="Target" />
-                  <TableColumn prefWidth="138.0" text="Realisasi" />
-                  <TableColumn text="Bobot (%)" />
-                  <TableColumn prefWidth="78.0" text="Skala Nilai" />
-                  <TableColumn prefWidth="74.0" text="Hasil" />
+                  <TableColumn fx:id="noColumn" prefWidth="52.0" text="No" />
+                  <TableColumn fx:id="sasaranKerjaColumn" prefWidth="199.0" text="Sasaran Kerja" />
+                  <TableColumn fx:id="targetColumn" prefWidth="173.0" text="Target" />
+                  <TableColumn fx:id="realisasiColumn" prefWidth="138.0" text="Realisasi" />
+                  <TableColumn fx:id="bobotColumn" text="Bobot (%)" />
+                  <TableColumn fx:id="skalaNilaiColumn" prefWidth="78.0" text="Skala Nilai" />
+                  <TableColumn fx:id="hasilColumn" prefWidth="74.0" text="Hasil" />
               </columns>
             </TableView>
          </content>
       </ScrollPane>
-      <Button layoutX="608.0" layoutY="536.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="69.0" text="Submit" />
+      <Button fx:id="btnSubmit" layoutX="608.0" layoutY="536.0" mnemonicParsing="false" onAction="#handleSubmitButton" prefHeight="35.0" prefWidth="69.0" text="Submit" />
       <Label layoutX="19.0" layoutY="64.0" prefHeight="20.0" prefWidth="92.0" text="Sasaran Kerja">
          <font>
             <Font size="14.0" />
@@ -59,14 +59,15 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <TextArea layoutX="19.0" layoutY="84.0" prefHeight="175.0" prefWidth="217.0" />
-      <TextArea layoutX="250.0" layoutY="84.0" prefHeight="63.0" prefWidth="261.0" />
-      <TextArea layoutX="250.0" layoutY="179.0" prefHeight="63.0" prefWidth="261.0" />
-      <TextField layoutX="527.0" layoutY="84.0" prefHeight="25.0" prefWidth="92.0" />
-      <ComboBox layoutX="527.0" layoutY="186.0" prefWidth="150.0" />
-      <Button layoutX="358.0" layoutY="536.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="69.0" text="Add" />
-      <Button layoutX="442.0" layoutY="536.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="69.0" text="Update" />
-      <Button layoutX="526.0" layoutY="536.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="69.0" text="Delete" />
-      <TextField layoutX="527.0" layoutY="25.0" prefHeight="25.0" prefWidth="150.0" promptText="ID Karyawan" />
+      <TextArea fx:id="areaSasaranKerja" layoutX="19.0" layoutY="84.0" prefHeight="175.0" prefWidth="217.0" />
+      <TextArea fx:id="areaTarget" layoutX="250.0" layoutY="84.0" prefHeight="63.0" prefWidth="261.0" />
+      <TextArea fx:id="areaRealisasi" layoutX="250.0" layoutY="179.0" prefHeight="63.0" prefWidth="261.0" />
+      <TextField fx:id="textBobot" layoutX="527.0" layoutY="84.0" prefHeight="25.0" prefWidth="92.0" />
+      <ComboBox fx:id="nilaiComboBox" layoutX="527.0" layoutY="186.0" prefWidth="150.0" promptText="Pilih Nilai" />
+      <Button fx:id="btnAdd" layoutX="358.0" layoutY="536.0" mnemonicParsing="false" onAction="#handleAddButton" prefHeight="35.0" prefWidth="69.0" text="Add" />
+      <Button fx:id="btnUpdate" layoutX="442.0" layoutY="536.0" mnemonicParsing="false" onAction="#handleUpdateButton" prefHeight="35.0" prefWidth="69.0" text="Update" />
+      <Button fx:id="btnDelete" layoutX="526.0" layoutY="536.0" mnemonicParsing="false" onAction="#handleDeleteButton" prefHeight="35.0" prefWidth="69.0" text="Delete" />
+      <TextField fx:id="idKaryawan" layoutX="527.0" layoutY="25.0" prefHeight="25.0" prefWidth="150.0" promptText="ID Karyawan" />
+      <Button fx:id="btnCari" layoutX="485.0" layoutY="25.0" mnemonicParsing="false" onAction="#handleFindButton" prefHeight="25.0" prefWidth="40.0" text="Cari" />
    </children>
 </AnchorPane>

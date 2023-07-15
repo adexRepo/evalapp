@@ -123,5 +123,16 @@
             ) b
     </select>
 
+    <select id="selectAllScaleWorkGoals" resultType="com.kkp.evalapp.model.Items">
+        select
+            id as id 
+            <!-- score as score 
+            category as category 
+            est_ach_fst as startRange
+            est_ach_last as endRange -->
+            remark as name
+        from
+            work_scale
+    </select>
 
 </mapper>

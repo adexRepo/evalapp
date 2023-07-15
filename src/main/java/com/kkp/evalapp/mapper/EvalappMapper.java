@@ -10,6 +10,7 @@ import com.kkp.evalapp.model.ColumnItem;
 import com.kkp.evalapp.model.Competency;
 import com.kkp.evalapp.model.CompetencyScale;
 import com.kkp.evalapp.model.EvaluationBase;
+import com.kkp.evalapp.model.Items;
 import com.kkp.evalapp.model.MenuItem;
 import com.kkp.evalapp.model.Simple;
 import com.kkp.evalapp.model.User;
@@ -32,6 +33,8 @@ public interface EvalappMapper {
     Integer selectCurrentEvaluationBaseId();
     EvaluationBase selectEvaluationBaseById(Integer evaluationId);
     Integer selectSumCompetencyBasicAndTeknikal(HashMap<Object, Object> req);
+    List<Items> selectAllScaleWorkGoals();
+
 
     /* --------------------------------- Insert --------------------------------- */
     void insertNewUser(User entity);
