@@ -2,8 +2,11 @@ package com.kkp.evalapp.service;
 
 import java.util.List;
 
-import com.kkp.evalapp.model.Items;
+import com.kkp.evalapp.model.SasaranKerja;
+import com.kkp.evalapp.model.WorkGoalsScale;
 
 public interface WorkGoalsService {
-    List<Items> getListScalaWorkGoals();
+    List<WorkGoalsScale> getListScalaWorkGoals();
+
+    Boolean saveWorkGoals(Integer evaluationId, List<SasaranKerja> sasaranKerjaList);
 }

@@ -39,6 +39,13 @@
       VALUES (#{evaluationId}, #{id}, #{factor}, #{finalScoreA}, #{finalScoreB}, #{finalWeight})
     </insert>
 
-
-
+    <insert id="insertIntoWorkGoalsMap" parameterType="com.kkp.evalapp.model.WorkGoalsMap">
+      INSERT INTO work_goals_map (id, num, created_at, updated_at, work_goals, target, realization, param_a, param_b, param_c)
+      VALUES (#{id}, #{num}, SYSDATE(), SYSDATE(), #{workGoals}, #{target}, #{realization}, #{paramA}, #{paramB}, #{paramC})
+    </insert>
+    
+    <insert id="insertIntoWorkGoalsBase" parameterType="com.kkp.evalapp.model.WorkGoalsBase">
+      INSERT INTO work_goals_base (evaluation_id, wgm_id, tot_param_a, final_result_work_goal)
+      VALUES (#{evaluationId}, #{wgmId}, #{totParamA}, #{finalResultWorkGoal})
+    </insert>
 </mapper>

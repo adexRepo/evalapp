@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="771.0" prefWidth="654.0" fx:controller="com.kkp.evalapp.controller.EvaluationResultController" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="23.0" layoutY="14.0" text="Hasil Penilaian">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="23.0" layoutY="49.0" text="Hasil Penilaian Keseluruhan">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tbFaktor" layoutX="22.0" layoutY="76.0" prefHeight="81.0" prefWidth="612.0">
+        <columns>
+          <TableColumn prefWidth="308.0" text="Faktor" />
+          <TableColumn prefWidth="107.0" text="Nilai (A)" />
+            <TableColumn prefWidth="98.0" text="Bobot % (B)" />
+            <TableColumn prefWidth="97.0" text="Nilai Terbobot" />
+        </columns>
+      </TableView>
+      <Label layoutX="458.0" layoutY="157.0" text="Nilai Akhir">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <TextField fx:id="nilaiAkhir" layoutX="537.0" layoutY="157.0" prefHeight="25.0" prefWidth="97.0" />
+      <TextField fx:id="quality" layoutX="210.0" layoutY="188.0" prefHeight="25.0" prefWidth="49.0" />
+      <TextField fx:id="qualityRemark" layoutX="259.0" layoutY="188.0" prefHeight="25.0" prefWidth="373.0" />
+      <TextArea fx:id="areaComment" layoutX="23.0" layoutY="265.0" prefHeight="65.0" prefWidth="612.0" />
+      <Label layoutX="23.0" layoutY="225.0" text="KOMENTAR TERHADAP PENILAIAN">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="23.0" layoutY="245.0" text="Tuliskan harapan dan atau hal yang dirasakan selama priode penilaian.">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="23.0" layoutY="188.0" text="Kualitas Penilaian Akhir">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="23.0" layoutY="337.0" text="RENCANA PENGEMBANGAN TAHUNAN">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="23.0" layoutY="357.0" text="Rencana pengembangan yang akan dilaksanakan untuk meningkatkan kemampuan pekerja.">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <ScrollPane layoutX="21.0" layoutY="377.0" prefHeight="94.0" prefWidth="612.0">
+         <content>
+            <TableView fx:id="tbPlan" prefHeight="92.0" prefWidth="851.0">
+              <columns>
+                <TableColumn prefWidth="207.0" text="Sasaran Pengembangan" />
+                <TableColumn prefWidth="230.0" text="Metode Pengembangan" />
+                  <TableColumn minWidth="0.0" prefWidth="209.0" text="Periode Pengembangan" />
+                  <TableColumn prefWidth="204.0" text="Hasil Pengembangan" />
+              </columns>
+            </TableView>
+         </content>
+      </ScrollPane>
+      <TextArea fx:id="areaCoaching" layoutX="240.0" layoutY="542.0" prefHeight="81.0" prefWidth="398.0" />
+      <Label layoutX="26.0" layoutY="477.0" text="FORMAL COACHING">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="26.0" layoutY="496.0" text="Tuliskan harapan dan atau hal yang dirasakan selama priode penilaian.">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="28.0" layoutY="542.0" text="Pekerja :">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="29.0" layoutY="571.0" text="Penilai I :">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="29.0" layoutY="603.0" text="Penilai II :">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="92.0" layoutY="516.0" text="Tanggal Pelaksanaan" textFill="#00c8ff">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="364.0" layoutY="516.0" text="Hasil Coaching &amp; Mid Year Riview" textFill="#00c8ff">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <DatePicker fx:id="dtPekerjaCoaching" layoutX="92.0" layoutY="540.0" prefHeight="25.0" prefWidth="141.0" />
+      <DatePicker fx:id="dtPenilai1Coaching" layoutX="92.0" layoutY="569.0" prefHeight="25.0" prefWidth="141.0" />
+      <DatePicker fx:id="dtPenilai2Coaching" layoutX="92.0" layoutY="600.0" prefHeight="25.0" prefWidth="141.0" />
+      <TextArea fx:id="areaAddendum" layoutX="23.0" layoutY="675.0" prefHeight="65.0" prefWidth="612.0" />
+      <Label layoutX="23.0" layoutY="635.0" text="ADDENDUM">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="23.0" layoutY="655.0" text="Tuliskan perubahan sasaran kerja yang terjadi selama periode penilaian yang disepakai bersama.">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnSubmit" layoutX="562.0" layoutY="32.0" mnemonicParsing="false" onAction="#handleBtnSubmit" prefHeight="35.0" prefWidth="73.0" text="Submit" />
+   </children>
+</AnchorPane>

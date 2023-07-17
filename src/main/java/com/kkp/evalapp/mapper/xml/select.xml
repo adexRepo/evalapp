@@ -123,16 +123,45 @@
             ) b
     </select>
 
-    <select id="selectAllScaleWorkGoals" resultType="com.kkp.evalapp.model.Items">
+    <select id="selectAllScaleWorkGoals" resultType="com.kkp.evalapp.model.WorkGoalsScale">
         select
-            id as id 
-            <!-- score as score 
-            category as category 
-            est_ach_fst as startRange
-            est_ach_last as endRange -->
-            remark as name
+            id as id ,
+            score as score, 
+            category as category ,
+            est_ach_fst as startRange,
+            est_ach_last as endRange,
+            remark as remark
         from
             work_scale
     </select>
 
+    <select id="selectCountCurrentIdInWorkGoalsMap" resultType="INTEGER">
+        select count(*) from work_goals_map wgm 
+    </select>
+
+    <select id="selectCurrentEvaluationResultAll" parameterType="INTEGER"  resultType="com.kkp.evalapp.model.EvaluationResultAll">
+        select
+            evaluation_id as evaluationId
+            ,id as id 
+            ,factor as factor 
+            ,final_score_a as finalScoreA
+            ,final_score_b as finalScoreB
+            ,final_weight as finalWeight
+        from
+            evaluation_result_all
+        where
+            evaluation_id = #{evaluationId}
+    </select>
+
+    <select id="selectAllLastCriteriaEvaluation" resultType="com.kkp.evalapp.model.LastCriteriaEvaluation">
+        select
+            id            as id 
+            , quality     as quality 
+            , range_first as rangeFirst
+            , range_last  as rangeLast
+            , description as description 
+        from
+            last_criteria_evaluation lce
+        order by  id
+    </select>
 </mapper>

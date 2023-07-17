@@ -124,12 +124,18 @@ public class MainController implements Initializable {
                     Parent root = fxWeaver.loadView(FrameGridController.class);
                     newTab.setContent(root);
                 } else {
+
                     if(tabName.equals("Isi Evaluasi Kompetensi")){
                         Parent root = fxWeaver.loadView(CompetencyBasicController.class);
                         newTab.setContent(root);
-                    }else if (tabName.equals("Isi Sasaran Kerja"))
-                    {
+                    }else if (tabName.equals("Isi Sasaran Kerja")){
                         Parent root = fxWeaver.loadView(WorkGoalsController.class);
+                        newTab.setContent(root);
+                    }else if (tabName.equals("Report")){
+                        Parent root = fxWeaver.loadView(ReportController.class);
+                        newTab.setContent(root);
+                    }else if (tabName.equals("Atur Evaluasi")){
+                        Parent root = fxWeaver.loadView(EvaluationMgmtController.class);
                         newTab.setContent(root);
                     }
                     else{

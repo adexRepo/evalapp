@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 import com.kkp.evalapp.model.Items;
 import com.kkp.evalapp.model.SasaranKerja;
+import com.kkp.evalapp.model.WorkGoalsScale;
 import com.kkp.evalapp.service.WorkGoalsService;
 import com.kkp.evalapp.utils.ComponentUi;
 import com.kkp.evalapp.utils.Validator;
@@ -117,7 +118,12 @@ public class WorkGoalsController implements Initializable {
     }
 
     private void loadNilai() {
-        List<Items> lstItem = workGoalsService.getListScalaWorkGoals();
+        List<WorkGoalsScale> lstScale = workGoalsService.getListScalaWorkGoals();
+        List<Items> lstItem = new ArrayList<>();
+        for (WorkGoalsScale scale : lstScale) {
+            Items item = new Items(scale.getScore(), scale.getRemark());
+            lstItem.add(item);
+        }
         nilaiComboBox.getItems().addAll(lstItem);
         lstItemsCbb = lstItem;
     }
@@ -134,12 +140,14 @@ public class WorkGoalsController implements Initializable {
             boolean isNumber = Validator.isNumber(bobot);
             if (!isNumber) {
                 ComponentUi.showAlert(AlertType.WARNING, "Form Evaluation",
-                        "Bobot must be number");
+                "Bobot must be number");
                 return;
             }
+            Integer bobotInt = Integer.parseInt(bobot);
+            Double bobotDecimal = (double) bobotInt / 100;
             Integer no = sasaranKerjaList.size() + 1;
-            Integer bobotInt = Integer.getInteger(bobot) / 100;
-            Double result = (double) (bobotInt * selectedNilai.getId());
+            Double result = (double) (bobotDecimal * selectedNilai.getId());
+            double roundedNumber = Math.round(result * 100.0) / 100.0;
             SasaranKerja nw = new SasaranKerja();
             nw.setNo(no);
             nw.setSasaranKerja(sasaran);
@@ -147,7 +155,7 @@ public class WorkGoalsController implements Initializable {
             nw.setRealisasi(realisasi);
             nw.setBobot(bobotInt);
             nw.setSkalaNilai(selectedNilai.getId());
-            nw.setHasil(result);
+            nw.setHasil(roundedNumber);
             sasaranKerjaList.add(nw);
             tabelSasaran.setItems(FXCollections.observableList(sasaranKerjaList));
             reset();
@@ -189,15 +197,17 @@ public class WorkGoalsController implements Initializable {
                     return;
                 }
 
-                Integer bobotInt = Integer.getInteger(bobot) / 100;
-                Double result = (double) (bobotInt * selectedNilai.getId());
+                Integer bobotInt = Integer.parseInt(bobot);
+                Double bobotDecimal = (double) bobotInt / 100;
+                Double result = (double) (bobotDecimal * selectedNilai.getId());
+                double roundedNumber = Math.round(result * 100.0) / 100.0;
 
                 selectedWorkGoals.setSasaranKerja(sasaran);
                 selectedWorkGoals.setTarget(target);
                 selectedWorkGoals.setRealisasi(realisasi);
                 selectedWorkGoals.setBobot(bobotInt);
                 selectedWorkGoals.setSkalaNilai(selectedNilai.getId());
-                selectedWorkGoals.setHasil(result);
+                selectedWorkGoals.setHasil(roundedNumber);
                 tabelSasaran.refresh();
             }
         }
@@ -221,7 +231,9 @@ public class WorkGoalsController implements Initializable {
 
     @FXML
     private void handleSubmitButton(ActionEvent event) {
-        // Handle the Submit button action
+        reset();
+        Integer evaluationId = 1; // default need to change after create mapping
+        workGoalsService.saveWorkGoals(evaluationId,sasaranKerjaList);
     }
 
     @FXML

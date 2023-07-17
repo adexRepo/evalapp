@@ -14,6 +14,4 @@ public class EvaluationResultAll {
     private Double  finalScoreA       ;
     private Integer finalScoreB       ;
     private Double  finalWeight       ;
-    private Integer finalQuality      ;
-    private String  commentToEvaluator;
 }

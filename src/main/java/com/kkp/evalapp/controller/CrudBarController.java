@@ -51,7 +51,4 @@ public class CrudBarController {
     public void handlePrintButton() {
         // Handle the Print button action
     }
-
-    
-    // Add any additional methods or event handlers as needed
 }

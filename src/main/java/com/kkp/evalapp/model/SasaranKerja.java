@@ -13,6 +13,6 @@ public class SasaranKerja {
     private String  target       ;
     private String  realisasi    ;
     private Integer bobot        ;
-    private Integer skalaNilai   ;
+    private Integer skalaNilai   ; // score not id
     private Double  hasil        ;
 }

@@ -5,14 +5,17 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.kkp.evalapp.mapper.EvalappMapper;
 import com.kkp.evalapp.model.Competency;
 import com.kkp.evalapp.model.CompetencyScale;
 import com.kkp.evalapp.model.EvaluationBase;
+import com.kkp.evalapp.model.EvaluationResultAll;
 import com.kkp.evalapp.model.ScoreMap;
 import com.kkp.evalapp.model.TeknikalCompetency;
 import com.kkp.evalapp.service.CompetencyService;
+import com.kkp.evalapp.service.EvalappServices;
 
 import lombok.RequiredArgsConstructor;
 
@@ -20,6 +23,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class CompetencyServiceImpl implements CompetencyService{
     private final SqlSession session;
+    private final EvalappServices service;
 
     @Override
     public List<Competency> getCompetencyList() {
@@ -32,12 +36,16 @@ public class CompetencyServiceImpl implements CompetencyService{
     }
 
     @Override
+    @Transactional
     public Boolean saveEvaluationCompetency(Integer evaluationId, List<ScoreMap> competencies, List<TeknikalCompetency> teknikalCompetencies) {
         if(competencies.size() == 0){
             return false;
         }
 
         EvaluationBase base = session.getMapper(EvalappMapper.class).selectEvaluationBaseById(evaluationId);
+        if(base == null){
+            return false;
+        }
 
         // basic competency
         for (ScoreMap cs : competencies) {
@@ -88,8 +96,11 @@ public class CompetencyServiceImpl implements CompetencyService{
         result.put("finalScoreB", bobot);
         result.put("finalWeight", finalResultCompetency*bobot);
         session.getMapper(EvalappMapper.class).insertIntoEvaluationResultAll(result);
-
-
+        
+        List<EvaluationResultAll> resAll = service.checkResultAllAlreadyInsertedOrNot(evaluationId);
+        if(resAll.size() == 2){
+            service.updateEvaluationBase(evaluationId, resAll);
+        }
         return true;
     }
 }

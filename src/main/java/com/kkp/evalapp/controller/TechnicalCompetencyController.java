@@ -69,7 +69,7 @@ public class TechnicalCompetencyController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // Initialize the table columns
-        nilaiColumn.setCellValueFactory(new PropertyValueFactory<>("nilai"));
+        nilaiColumn     .setCellValueFactory(new PropertyValueFactory<>("nilai"     ));
         kompetensiColumn.setCellValueFactory(new PropertyValueFactory<>("kompetensi"));
         loadNilai();
         kompetensiList = new ArrayList<>();

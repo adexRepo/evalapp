@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kkp.evalapp.controller.ReportController">
+   <children>
+      <ScrollPane>
+         <content>
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="798.0" prefWidth="672.0">
+               <children>
+                  <Label layoutX="14.0" layoutY="14.0" text="Report Evaluasi">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <TableView layoutX="13.0" layoutY="82.0" prefHeight="118.0" prefWidth="647.0">
+                    <columns>
+                      <TableColumn prefWidth="63.0" text="ID" />
+                      <TableColumn prefWidth="171.0" text="Nama Pekerja" />
+                        <TableColumn prefWidth="79.0" text="Divisi" />
+                        <TableColumn prefWidth="109.0" text="Departemen" />
+                        <TableColumn prefWidth="139.0" text="Jabatan" />
+                        <TableColumn prefWidth="85.0" text="Level" />
+                    </columns>
+                  </TableView>
+                  <Label layoutX="13.0" layoutY="62.0" text="Report User">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <TableView layoutX="13.0" layoutY="230.0" prefHeight="118.0" prefWidth="647.0">
+                     <columns>
+                        <TableColumn prefWidth="75.0" text="No" />
+                        <TableColumn prefWidth="106.0" text="Tipe Indikator" />
+                        <TableColumn prefWidth="106.0" text="Kategori" />
+                        <TableColumn prefWidth="359.0" text="Deskripsi" />
+                     </columns>
+                  </TableView>
+                  <Label layoutX="13.0" layoutY="210.0" text="Report Kompetensi Dasar dan Teknikal Penilaian Pekerja">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <TableView layoutX="13.0" layoutY="375.0" prefHeight="118.0" prefWidth="648.0">
+                     <columns>
+                        <TableColumn prefWidth="53.0" text="ID" />
+                        <TableColumn prefWidth="128.0" text="Nama Pekerja" />
+                        <TableColumn prefWidth="120.0" text="Nilai Sasaran Kerja" />
+                        <TableColumn prefWidth="115.0" text="Nilai Kompetensi" />
+                        <TableColumn prefWidth="77.0" text="Nilai Akhir" />
+                        <TableColumn prefWidth="154.0" text="Kualitas" />
+                     </columns>
+                  </TableView>
+                  <Label layoutX="13.0" layoutY="355.0" text="Report Hasil Penilaian Pekerja">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <TableView layoutX="13.0" layoutY="523.0" prefHeight="118.0" prefWidth="647.0">
+                     <columns>
+                        <TableColumn prefWidth="107.0" text="Departemen" />
+                        <TableColumn prefWidth="111.0" text="Rata-rata Sasaran" />
+                        <TableColumn prefWidth="136.0" text="Rata-rata Kompetensi" />
+                        <TableColumn prefWidth="136.0" text="Rata-rata Nilai Akhir" />
+                        <TableColumn prefWidth="156.0" text="Rata-rata Kualitas" />
+                     </columns>
+                  </TableView>
+                  <Label layoutX="13.0" layoutY="503.0" text="Report Rata - Rata Pekerja Bedasarkan Kriteria Akhir Penilaian Dan Departemen">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="13.0" layoutY="652.0" text="Report Keseluruhan Evaluasi Bedasarkan pekerja">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <ScrollPane layoutX="13.0" layoutY="672.0" prefHeight="120.0" prefWidth="646.0">
+                     <content>
+                        <TableView prefHeight="118.0" prefWidth="1264.0">
+                           <columns>
+                              <TableColumn prefWidth="75.0" text="Evaluasi ID" />
+                              <TableColumn prefWidth="91.0" text="ID Pekerja" />
+                              <TableColumn prefWidth="107.0" text="Nama Pekerja" />
+                              <TableColumn prefWidth="107.0" text="Nama Penilai 1" />
+                              <TableColumn prefWidth="107.0" text="Nama Penilai 2" />
+                              <TableColumn prefWidth="107.0" text="Nilai Akhir" />
+                              <TableColumn prefWidth="107.0" text="Kualitas Akhir" />
+                              <TableColumn prefWidth="223.0" text="Komentar Penilaian" />
+                              <TableColumn prefWidth="234.0" text="Hasil Coaching" />
+                              <TableColumn prefWidth="234.0" text="Addendum" />
+                           </columns>
+                        </TableView>
+                     </content>
+                  </ScrollPane>
+               </children>
+            </AnchorPane>
+         </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>

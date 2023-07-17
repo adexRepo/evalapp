@@ -117,19 +117,19 @@ CREATE TABLE work_goals_base (
 
 -- Tabel work_goals_map
 CREATE TABLE work_goals_map (
-  id INTEGER AUTO_INCREMENT PRIMARY KEY,
-  no INTEGER,
+  id INTEGER not NULL,
+  num INTEGER not NULL,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   work_goals VARCHAR(1000),
-  target VARCHAR(255),
-  realization VARCHAR(255),
+  target VARCHAR(500),
+  realization VARCHAR(500),
   param_a INTEGER,
   param_b INTEGER,
   param_c INTEGER,
+   PRIMARY KEY (`id`,`num`),
   FOREIGN KEY (param_b) REFERENCES work_scale(id)
 );
-
 -- Tabel formal_coaching
 CREATE TABLE formal_coaching (
   evaluation_id INTEGER,

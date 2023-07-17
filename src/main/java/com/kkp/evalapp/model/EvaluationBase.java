@@ -17,4 +17,7 @@ public class EvaluationBase {
     private String  endDt    ;
     private String  addendum ;
     private String  toHrd    ;
+    private Integer finalQuality      ;
+    private Double  finalWeight       ; // merge from finalweigh in the table evaluation result all
+    private String  commentToEvaluator;
 }

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" fx:controller="com.kkp.evalapp.controller.MappingEvaluationController" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="420.0" prefWidth="710.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="13.0" layoutY="25.0" text="Submit Mapping Evaluation">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <ScrollPane layoutX="13.0" layoutY="152.0">
+         <content>
+            <TableView fx:id="tbPekerja" prefHeight="109.0" prefWidth="683.0">
+              <columns>
+                <TableColumn prefWidth="77.0" text="ID" />
+                <TableColumn prefWidth="181.0" text="Nama Karyawan" />
+                  <TableColumn minWidth="0.0" prefWidth="107.0" text="Divisi" />
+                  <TableColumn prefWidth="107.0" text="Departemen" />
+                  <TableColumn prefWidth="126.0" text="Jabatan" />
+                  <TableColumn prefWidth="84.0" text="Level" />
+              </columns>
+            </TableView>
+         </content>
+      </ScrollPane>
+      <Label layoutX="15.0" layoutY="132.0" text="Yang Dinilai :">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <ScrollPane layoutX="13.0" layoutY="293.0">
+         <content>
+            <TableView fx:id="tbPenliai" prefHeight="109.0" prefWidth="683.0">
+               <columns>
+                  <TableColumn prefWidth="77.0" text="ID" />
+                  <TableColumn prefWidth="181.0" text="Nama Karyawan" />
+                  <TableColumn minWidth="0.0" prefWidth="107.0" text="Divisi" />
+                  <TableColumn prefWidth="107.0" text="Departemen" />
+                  <TableColumn prefWidth="126.0" text="Jabatan" />
+                  <TableColumn prefWidth="84.0" text="Level" />
+               </columns>
+            </TableView>
+         </content>
+      </ScrollPane>
+      <Label layoutX="16.0" layoutY="273.0" text="Penilai">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <DatePicker fx:id="startDt" layoutX="16.0" layoutY="90.0" promptText="Isi Tanggal" />
+      <Label layoutX="16.0" layoutY="70.0" prefHeight="20.0" prefWidth="89.0" text="Start Periode">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <DatePicker fx:id="endDt" layoutX="213.0" layoutY="91.0" promptText="Isi Tanggal" />
+      <Label layoutX="213.0" layoutY="70.0" prefHeight="20.0" prefWidth="89.0" text="Akhir Periode">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="197.0" layoutY="93.0" prefHeight="20.0" prefWidth="14.0" text="~">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnSubmit" layoutX="642.0" layoutY="91.0" mnemonicParsing="false" onAction="#handleBtnSubmit" text="Submit" />
+   </children>
+</AnchorPane>
