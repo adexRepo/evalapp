@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="771.0" prefWidth="654.0" fx:controller="com.kkp.evalapp.controller.EvaluationResultController" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="771.0" prefWidth="654.0" fx:controller="com.kkp.evalapp.controller.EvaluationResultController" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label layoutX="23.0" layoutY="14.0" text="Hasil Penilaian">
          <font>
@@ -26,10 +26,10 @@
       </Label>
       <TableView fx:id="tbFaktor" layoutX="22.0" layoutY="76.0" prefHeight="81.0" prefWidth="612.0">
         <columns>
-          <TableColumn prefWidth="308.0" text="Faktor" />
-          <TableColumn prefWidth="107.0" text="Nilai (A)" />
-            <TableColumn prefWidth="98.0" text="Bobot % (B)" />
-            <TableColumn prefWidth="97.0" text="Nilai Terbobot" />
+            <TableColumn fx:id="faktorColumn" prefWidth="308.0" text="Faktor" />
+            <TableColumn fx:id="nilaiColumn" prefWidth="107.0" text="Nilai (A)" />
+            <TableColumn fx:id="bobotColumn" prefWidth="98.0" text="Bobot % (B)" />
+            <TableColumn fx:id="nilaiTerbobotColumn" prefWidth="97.0" text="Nilai Terbobot" />
         </columns>
       </TableView>
       <Label layoutX="458.0" layoutY="157.0" text="Nilai Akhir">
@@ -70,10 +70,10 @@
          <content>
             <TableView fx:id="tbPlan" prefHeight="92.0" prefWidth="851.0">
               <columns>
-                <TableColumn prefWidth="207.0" text="Sasaran Pengembangan" />
-                <TableColumn prefWidth="230.0" text="Metode Pengembangan" />
-                  <TableColumn minWidth="0.0" prefWidth="209.0" text="Periode Pengembangan" />
-                  <TableColumn prefWidth="204.0" text="Hasil Pengembangan" />
+                <TableColumn   fx:id="sasaranPengembanganColumn" prefWidth="207.0" text="Sasaran Pengembangan" />
+                <TableColumn   fx:id="metodePengembanganColumn" prefWidth="230.0" text="Metode Pengembangan" />
+                  <TableColumn fx:id="periodePengembanganColumn" minWidth="0.0" prefWidth="209.0" text="Periode Pengembangan" />
+                  <TableColumn fx:id="hasilPengembanganColumn" prefWidth="204.0" text="Hasil Pengembangan" />
               </columns>
             </TableView>
          </content>

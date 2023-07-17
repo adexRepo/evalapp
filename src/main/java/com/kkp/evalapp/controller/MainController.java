@@ -53,7 +53,7 @@ public class MainController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        Image image = new Image(getClass().getResourceAsStream("/images/edit.png"));
+        Image image = new Image(getClass().getResourceAsStream("/images/logo.png"));
         img.setImage(image);
 
         insertDataToTreeView(menuService.getAllMenu());
@@ -131,7 +131,7 @@ public class MainController implements Initializable {
                     }else if (tabName.equals("Isi Sasaran Kerja")){
                         Parent root = fxWeaver.loadView(WorkGoalsController.class);
                         newTab.setContent(root);
-                    }else if (tabName.equals("Report")){
+                    }else if (tabName.equals("Reports")){
                         Parent root = fxWeaver.loadView(ReportController.class);
                         newTab.setContent(root);
                     }else if (tabName.equals("Atur Evaluasi")){

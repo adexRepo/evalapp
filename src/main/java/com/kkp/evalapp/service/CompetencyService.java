@@ -8,6 +8,7 @@ import com.kkp.evalapp.model.ScoreMap;
 import com.kkp.evalapp.model.TeknikalCompetency;
 
 public interface CompetencyService {
+    
     List<Competency> getCompetencyList();
 
     List<CompetencyScale> getCompetencyScale();

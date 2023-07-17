@@ -2,12 +2,16 @@
 package com.kkp.evalapp.controller;
 
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 import org.springframework.stereotype.Component;
 
+import com.kkp.evalapp.constats.DataStorage;
 import com.kkp.evalapp.model.HistoryEvaluation;
 import com.kkp.evalapp.model.TandaTangan;
+import com.kkp.evalapp.utils.PopupUtil;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -42,12 +46,10 @@ public class EvaluationMgmtController implements Initializable {
     @FXML
     private Button btnTtd;
     @FXML
-    private Button btnTtd1;
+    private Button btnResultAll;
 
     @FXML
     private TableView<TandaTangan> tbTtd;
-    @FXML
-    private TableColumn<TandaTangan, String> penetapanSasaranKerjaColumn;
     @FXML
     private TableColumn<TandaTangan, String> pekerjaSasaranKerjaColumn;
     @FXML
@@ -55,15 +57,12 @@ public class EvaluationMgmtController implements Initializable {
     @FXML
     private TableColumn<TandaTangan, String> penilai2SasaranKerjaColumn;
     @FXML
-    private TableColumn<TandaTangan, String> penetapanHasilPenilaianColumn;
-    @FXML
     private TableColumn<TandaTangan, String> pekerjaHasilPenilaianColumn;
     @FXML
     private TableColumn<TandaTangan, String> penilai1HasilPenilaianColumn;
     @FXML
     private TableColumn<TandaTangan, String> penilai2HasilPenilaianColumn;
 
-    @FXML
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         generateTableProperty() ;
@@ -71,11 +70,18 @@ public class EvaluationMgmtController implements Initializable {
 
     @FXML
     private void handleBtnBuat() {
-        // Handle "Buat Baru" button action
+        Map<String, Object> parameterMap = new HashMap<>();
+        parameterMap.put("fxmlPath", "/ui/biz/MappingEvaluasi.fxml");
+        PopupUtil.showPopup(MappingEvaluationController.class, parameterMap);
     }
 
     @FXML
     private void handleDetail() {
+        Map<String, Object> parameterMap = new HashMap<>();
+        parameterMap.put("fxmlPath", "/ui/biz/MappingEvaluasi.fxml");
+        DataStorage storage = DataStorage.getInstance();
+        storage.getCache().put("evaluationId", 1);// need to change
+        PopupUtil.showPopup(MappingEvaluationController.class, parameterMap);
         // Handle "Lihat Detail" button action
     }
 
@@ -84,6 +90,14 @@ public class EvaluationMgmtController implements Initializable {
         // Handle "Tanda Tangani Rencana" and "Lihat Hasil Keseluruhan" button action
     }
 
+    @FXML
+    private void handleBtnResultAll() {
+                Map<String, Object> parameterMap = new HashMap<>();
+        parameterMap.put("fxmlPath", "/ui/biz/HasilPenilaian.fxml");
+        DataStorage storage = DataStorage.getInstance();
+        storage.getCache().put("evaluationId", 1);// need to change
+        PopupUtil.showPopup(EvaluationResultController.class, parameterMap);
+    }
 
     private void generateTableProperty() {
         // Initialize table columns and data bindings
@@ -94,11 +108,9 @@ public class EvaluationMgmtController implements Initializable {
         evaluator2Column   .setCellValueFactory(new PropertyValueFactory<>("evaluator2"   ));
         periodColumn       .setCellValueFactory(new PropertyValueFactory<>("period"       ));
 
-        penetapanSasaranKerjaColumn  .setCellValueFactory(new PropertyValueFactory<>("penetapanSasaranKerja" ));
         pekerjaSasaranKerjaColumn    .setCellValueFactory(new PropertyValueFactory<>("pekerjaSasaranKerja" ));
         penilai1SasaranKerjaColumn   .setCellValueFactory(new PropertyValueFactory<>("penilai1SasaranKerja" ));
         penilai2SasaranKerjaColumn   .setCellValueFactory(new PropertyValueFactory<>("penilai2SasaranKerja" ));
-        penetapanHasilPenilaianColumn.setCellValueFactory(new PropertyValueFactory<>("penetapanHasilPenilaian" ));
         pekerjaHasilPenilaianColumn  .setCellValueFactory(new PropertyValueFactory<>("pekerjaHasilPenilaian" ));
         penilai1HasilPenilaianColumn .setCellValueFactory(new PropertyValueFactory<>("penilai1HasilPenilaian" ));
         penilai2HasilPenilaianColumn .setCellValueFactory(new PropertyValueFactory<>("penilai2HasilPenilaian" ));

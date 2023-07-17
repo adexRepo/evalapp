@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,8 +21,10 @@ import com.kkp.evalapp.service.EvalappServices;
 import lombok.RequiredArgsConstructor;
 
 @Service
+@Component
 @RequiredArgsConstructor
 public class CompetencyServiceImpl implements CompetencyService{
+
     private final SqlSession session;
     private final EvalappServices service;
 

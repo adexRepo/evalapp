@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane maxHeight="-Infinity" fx:controller="com.kkp.evalapp.controller.MappingEvaluationController" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="420.0" prefWidth="710.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" fx:controller="com.kkp.evalapp.controller.MappingEvaluationController" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="420.0" prefWidth="710.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label layoutX="13.0" layoutY="25.0" text="Submit Mapping Evaluation">
          <font>
@@ -21,12 +21,12 @@
          <content>
             <TableView fx:id="tbPekerja" prefHeight="109.0" prefWidth="683.0">
               <columns>
-                <TableColumn prefWidth="77.0" text="ID" />
-                <TableColumn prefWidth="181.0" text="Nama Karyawan" />
-                  <TableColumn minWidth="0.0" prefWidth="107.0" text="Divisi" />
-                  <TableColumn prefWidth="107.0" text="Departemen" />
-                  <TableColumn prefWidth="126.0" text="Jabatan" />
-                  <TableColumn prefWidth="84.0" text="Level" />
+                  <TableColumn fx:id="idPekerjaColumn" prefWidth="77.0" text="ID" />
+                  <TableColumn fx:id="namaPekerjaColumn" prefWidth="181.0" text="Nama Karyawan" />
+                  <TableColumn fx:id="divisiPekerjaColumn" minWidth="0.0" prefWidth="107.0" text="Divisi" />
+                  <TableColumn fx:id="departemenPekerjaColumn" prefWidth="107.0" text="Departemen" />
+                  <TableColumn fx:id="jabatanPekerjaColumn" prefWidth="126.0" text="Jabatan" />
+                  <TableColumn fx:id="levelPekerjaColumn" prefWidth="84.0" text="Level" />
               </columns>
             </TableView>
          </content>
@@ -40,12 +40,12 @@
          <content>
             <TableView fx:id="tbPenliai" prefHeight="109.0" prefWidth="683.0">
                <columns>
-                  <TableColumn prefWidth="77.0" text="ID" />
-                  <TableColumn prefWidth="181.0" text="Nama Karyawan" />
-                  <TableColumn minWidth="0.0" prefWidth="107.0" text="Divisi" />
-                  <TableColumn prefWidth="107.0" text="Departemen" />
-                  <TableColumn prefWidth="126.0" text="Jabatan" />
-                  <TableColumn prefWidth="84.0" text="Level" />
+                  <TableColumn fx:id="idPenilaiColumn" prefWidth="77.0" text="ID" />
+                  <TableColumn fx:id="namaPenilaiColumn" prefWidth="181.0" text="Nama Karyawan" />
+                  <TableColumn fx:id="divisiPenilaiColumn" minWidth="0.0" prefWidth="107.0" text="Divisi" />
+                  <TableColumn fx:id="departemenPenilaiColumn" prefWidth="107.0" text="Departemen" />
+                  <TableColumn fx:id="jabatanPenilaiColumn" prefWidth="126.0" text="Jabatan" />
+                  <TableColumn fx:id="levelPenilaiColumn" prefWidth="84.0" text="Level" />
                </columns>
             </TableView>
          </content>

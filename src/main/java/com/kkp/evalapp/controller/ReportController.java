@@ -99,7 +99,7 @@ public class ReportController  implements Initializable{
     private TableColumn<ReportOverallEvaluation, String> addendumColumn;
 
     
-    @Override @FXML
+    @Override
     public void initialize(URL location, ResourceBundle resources) {
         generateReportProperty();
     }

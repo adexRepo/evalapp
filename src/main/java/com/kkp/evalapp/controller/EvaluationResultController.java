@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 import org.springframework.stereotype.Component;
 
 import com.kkp.evalapp.model.Faktor;
+import com.kkp.evalapp.model.PlanDevelopment;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -57,7 +58,6 @@ public class EvaluationResultController implements Initializable{
     @FXML
     private Button btnSubmit;
     
-    @FXML
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         generateTableProperty();

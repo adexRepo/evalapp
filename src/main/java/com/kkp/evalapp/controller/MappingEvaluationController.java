@@ -5,6 +5,7 @@ import java.util.ResourceBundle;
 
 import org.springframework.stereotype.Component;
 
+import com.kkp.evalapp.constats.DataStorage;
 import com.kkp.evalapp.model.Employee;
 
 import javafx.fxml.FXML;
@@ -58,9 +59,12 @@ public class MappingEvaluationController implements Initializable {
     @FXML
     private Button btnSubmit;
 
-    @FXML
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        DataStorage storage = DataStorage.getInstance();
+        var evaluationId = storage.getCache().get("evaluationId");
+        System.out.println("EvaluationId : "+evaluationId);
+
         generateTableProperty();
     }
 

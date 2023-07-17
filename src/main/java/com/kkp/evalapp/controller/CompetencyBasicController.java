@@ -9,7 +9,6 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.kkp.evalapp.constats.DataStorage;
@@ -33,14 +32,15 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import lombok.RequiredArgsConstructor;
 import net.rgielen.fxweaver.core.FxmlView;
 
 @Component
 @FxmlView("/ui/biz/EvaluasiKompetensiDasar.fxml")
+@RequiredArgsConstructor
 public class CompetencyBasicController implements Initializable  {
-
-    @Autowired
-    private CompetencyService competencyService;
+    
+    private final CompetencyService competencyService;
 
     @FXML
     private AnchorPane rootPane;
@@ -97,6 +97,7 @@ public class CompetencyBasicController implements Initializable  {
     private ComboBox<Items> nilaiComboBox;
 
     private List<Competency> lstCompetency;
+    private List<CompetencyScale> lstCompetencyScale;
     private List<Items> lstItemsCbb;
     private List<ScoreMap> lstScoreMap;
     private Integer currentIdx;
@@ -106,6 +107,7 @@ public class CompetencyBasicController implements Initializable  {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         lstScoreMap = new ArrayList<>();
+        lstCompetencyScale = new ArrayList<>();
         lstCompetency = competencyService.getCompetencyList();
         loadNilai();
         loadCompetencyBasicContent(lstCompetency.get(0));
@@ -145,7 +147,7 @@ public class CompetencyBasicController implements Initializable  {
     }
 
     private void loadNilai() {
-        List<CompetencyScale> lstCompetencyScale = competencyService.getCompetencyScale();
+        lstCompetencyScale = competencyService.getCompetencyScale();
 
         List<Items> lstItem = new ArrayList<>();
         for (CompetencyScale scale : lstCompetencyScale) {
@@ -167,22 +169,24 @@ public class CompetencyBasicController implements Initializable  {
         }
         Competency currentComp = lstCompetency.get(currentIdx);
         changeDataCurrent(currentComp, selectedItem.getId());
-        Competency nextComp = lstCompetency.get(afterIdx);
-        Optional<ScoreMap> score = lstScoreMap.stream()
-                .filter(val -> val.getNum().equals(nextComp.getNo()))
-                .findFirst();
-        doReset();
-        if (score.isPresent()) {
-            Optional<Items> item = lstItemsCbb.stream()
-                    .filter(val -> val.getId().equals(score.get().getScaleId()))
-                    .findFirst();
-            item.ifPresent(i -> nilaiComboBox.setValue(i));
-        }
         if(currentComp.getNo() == lstCompetency.size()){
             btnNext.disableProperty().set(true);
             btnSubmit.disableProperty().set(false);
             btnTeknikal.disableProperty().set(false);
         }else{
+            Competency nextComp = lstCompetency.get(afterIdx);
+            Optional<ScoreMap> score = lstScoreMap.stream()
+                    .filter(val -> val.getNum().equals(nextComp.getNo()))
+                    .findFirst();
+            doReset();
+            if (score.isPresent()) {
+                Optional<Items> item = lstItemsCbb.stream()
+                        .filter(val -> val.getId().equals(score.get().getScaleId()))
+                        .findFirst();
+                item.ifPresent(i -> nilaiComboBox.setValue(i));
+            }
+            System.out.println("NO : "+currentComp.getNo() +" / "+ lstCompetency.size());
+
             loadCompetencyBasicContent(nextComp);
         }
     }
@@ -258,6 +262,8 @@ public class CompetencyBasicController implements Initializable  {
         Map<String, Object> parameterMap = new HashMap<>();
         parameterMap.put("fxmlPath", "/ui/biz/TeknikalCompetency.fxml");
         DataStorage.getInstance().getCache().put("listTeknikal", new ArrayList<TeknikalCompetency>());
+        DataStorage.getInstance().getCache().put("lstCompetencyScale", lstCompetencyScale);
+
         PopupUtil.showPopup(TechnicalCompetencyController.class, parameterMap);
     }
 

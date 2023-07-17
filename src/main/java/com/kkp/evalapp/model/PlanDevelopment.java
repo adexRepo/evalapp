@@ -1,4 +1,4 @@
-package com.kkp.evalapp.controller;
+package com.kkp.evalapp.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

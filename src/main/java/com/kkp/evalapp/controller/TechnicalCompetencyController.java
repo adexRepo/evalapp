@@ -6,14 +6,12 @@ import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.kkp.evalapp.constats.DataStorage;
 import com.kkp.evalapp.model.CompetencyScale;
 import com.kkp.evalapp.model.Items;
 import com.kkp.evalapp.model.TeknikalCompetency;
-import com.kkp.evalapp.service.CompetencyService;
 
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -31,9 +29,6 @@ import net.rgielen.fxweaver.core.FxmlView;
 @Component
 @FxmlView("/ui/biz/TeknikalCompetency.fxml")
 public class TechnicalCompetencyController implements Initializable {
-
-    @Autowired
-    private CompetencyService competencyService;
 
     @FXML
     private TextArea kompetensiTextArea;
@@ -66,6 +61,7 @@ public class TechnicalCompetencyController implements Initializable {
 
     private List<Items> lstItemsCbb;
 
+    @FXML
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // Initialize the table columns
@@ -76,8 +72,10 @@ public class TechnicalCompetencyController implements Initializable {
         tableTeknikal.setItems(FXCollections.observableList(kompetensiList));
     }
 
+    @SuppressWarnings("unchecked")
     private void loadNilai() {
-        List<CompetencyScale> lstCompetencyScale = competencyService.getCompetencyScale();
+        DataStorage storage = DataStorage.getInstance();
+        List<CompetencyScale> lstCompetencyScale = (List<CompetencyScale>) storage.getCache().get("lstCompetencyScale");
 
         List<Items> lstItem = new ArrayList<>();
         for (CompetencyScale scale : lstCompetencyScale) {

@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kkp.evalapp.controller.ReportController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kkp.evalapp.controller.ReportController">
    <children>
       <ScrollPane>
          <content>
@@ -19,14 +19,14 @@
                         <Font name="System Bold" size="24.0" />
                      </font>
                   </Label>
-                  <TableView layoutX="13.0" layoutY="82.0" prefHeight="118.0" prefWidth="647.0">
+                  <TableView fx:id="userTableView" layoutX="13.0" layoutY="82.0" prefHeight="118.0" prefWidth="647.0">
                     <columns>
-                      <TableColumn prefWidth="63.0" text="ID" />
-                      <TableColumn prefWidth="171.0" text="Nama Pekerja" />
-                        <TableColumn prefWidth="79.0" text="Divisi" />
-                        <TableColumn prefWidth="109.0" text="Departemen" />
-                        <TableColumn prefWidth="139.0" text="Jabatan" />
-                        <TableColumn prefWidth="85.0" text="Level" />
+                        <TableColumn fx:id="idColumn" prefWidth="63.0" text="ID" />
+                        <TableColumn fx:id="nameColumn" prefWidth="171.0" text="Nama Pekerja" />
+                        <TableColumn fx:id="divisionColumn" prefWidth="79.0" text="Divisi" />
+                        <TableColumn fx:id="departmentColumn" prefWidth="109.0" text="Departemen" />
+                        <TableColumn fx:id="positionColumn" prefWidth="139.0" text="Jabatan" />
+                        <TableColumn fx:id="levelColumn" prefWidth="85.0" text="Level" />
                     </columns>
                   </TableView>
                   <Label layoutX="13.0" layoutY="62.0" text="Report User">
@@ -34,12 +34,12 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <TableView layoutX="13.0" layoutY="230.0" prefHeight="118.0" prefWidth="647.0">
+                  <TableView fx:id="indicatorTableView" layoutX="13.0" layoutY="230.0" prefHeight="118.0" prefWidth="647.0">
                      <columns>
-                        <TableColumn prefWidth="75.0" text="No" />
-                        <TableColumn prefWidth="106.0" text="Tipe Indikator" />
-                        <TableColumn prefWidth="106.0" text="Kategori" />
-                        <TableColumn prefWidth="359.0" text="Deskripsi" />
+                        <TableColumn fx:id="indicatorNoColumn" prefWidth="75.0" text="No" />
+                        <TableColumn fx:id="indicatorTypeColumn" prefWidth="106.0" text="Tipe Indikator" />
+                        <TableColumn fx:id="indicatorCategoryColumn" prefWidth="106.0" text="Kategori" />
+                        <TableColumn fx:id="indicatorDescriptionColumn" prefWidth="359.0" text="Deskripsi" />
                      </columns>
                   </TableView>
                   <Label layoutX="13.0" layoutY="210.0" text="Report Kompetensi Dasar dan Teknikal Penilaian Pekerja">
@@ -47,14 +47,14 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <TableView layoutX="13.0" layoutY="375.0" prefHeight="118.0" prefWidth="648.0">
+                  <TableView fx:id="competencyTableView" layoutX="13.0" layoutY="375.0" prefHeight="118.0" prefWidth="648.0">
                      <columns>
-                        <TableColumn prefWidth="53.0" text="ID" />
-                        <TableColumn prefWidth="128.0" text="Nama Pekerja" />
-                        <TableColumn prefWidth="120.0" text="Nilai Sasaran Kerja" />
-                        <TableColumn prefWidth="115.0" text="Nilai Kompetensi" />
-                        <TableColumn prefWidth="77.0" text="Nilai Akhir" />
-                        <TableColumn prefWidth="154.0" text="Kualitas" />
+                        <TableColumn fx:id="competencyIdColumn" prefWidth="53.0" text="ID" />
+                        <TableColumn fx:id="competencyNameColumn" prefWidth="128.0" text="Nama Pekerja" />
+                        <TableColumn fx:id="competencyTargetColumn" prefWidth="120.0" text="Nilai Sasaran Kerja" />
+                        <TableColumn fx:id="competencyRatingColumn" prefWidth="115.0" text="Nilai Kompetensi" />
+                        <TableColumn fx:id="competencyResultColumn" prefWidth="77.0" text="Nilai Akhir" />
+                        <TableColumn fx:id="competencyQualityColumn" prefWidth="154.0" text="Kualitas" />
                      </columns>
                   </TableView>
                   <Label layoutX="13.0" layoutY="355.0" text="Report Hasil Penilaian Pekerja">
@@ -62,13 +62,13 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <TableView layoutX="13.0" layoutY="523.0" prefHeight="118.0" prefWidth="647.0">
+                  <TableView fx:id="workResultTableView" layoutX="13.0" layoutY="523.0" prefHeight="118.0" prefWidth="647.0">
                      <columns>
-                        <TableColumn prefWidth="107.0" text="Departemen" />
-                        <TableColumn prefWidth="111.0" text="Rata-rata Sasaran" />
-                        <TableColumn prefWidth="136.0" text="Rata-rata Kompetensi" />
-                        <TableColumn prefWidth="136.0" text="Rata-rata Nilai Akhir" />
-                        <TableColumn prefWidth="156.0" text="Rata-rata Kualitas" />
+                        <TableColumn fx:id="workResultDepartmentColumn" prefWidth="107.0" text="Departemen" />
+                        <TableColumn fx:id="workResultAverageTargetColumn" prefWidth="111.0" text="Rata-rata Sasaran" />
+                        <TableColumn fx:id="workResultAverageRatingColumn" prefWidth="136.0" text="Rata-rata Kompetensi" />
+                        <TableColumn fx:id="workResultAverageResultColumn" prefWidth="136.0" text="Rata-rata Nilai Akhir" />
+                        <TableColumn fx:id="workResultAverageQualityColumn" prefWidth="156.0" text="Rata-rata Kualitas" />
                      </columns>
                   </TableView>
                   <Label layoutX="13.0" layoutY="503.0" text="Report Rata - Rata Pekerja Bedasarkan Kriteria Akhir Penilaian Dan Departemen">
@@ -83,18 +83,18 @@
                   </Label>
                   <ScrollPane layoutX="13.0" layoutY="672.0" prefHeight="120.0" prefWidth="646.0">
                      <content>
-                        <TableView prefHeight="118.0" prefWidth="1264.0">
+                        <TableView fx:id="overallEvaluationTableView" prefHeight="118.0" prefWidth="1264.0">
                            <columns>
-                              <TableColumn prefWidth="75.0" text="Evaluasi ID" />
-                              <TableColumn prefWidth="91.0" text="ID Pekerja" />
-                              <TableColumn prefWidth="107.0" text="Nama Pekerja" />
-                              <TableColumn prefWidth="107.0" text="Nama Penilai 1" />
-                              <TableColumn prefWidth="107.0" text="Nama Penilai 2" />
-                              <TableColumn prefWidth="107.0" text="Nilai Akhir" />
-                              <TableColumn prefWidth="107.0" text="Kualitas Akhir" />
-                              <TableColumn prefWidth="223.0" text="Komentar Penilaian" />
-                              <TableColumn prefWidth="234.0" text="Hasil Coaching" />
-                              <TableColumn prefWidth="234.0" text="Addendum" />
+                              <TableColumn fx:id="evaluationIdColumn" prefWidth="75.0" text="Evaluasi ID" />
+                              <TableColumn fx:id="userIdColumn" prefWidth="91.0" text="ID Pekerja" />
+                              <TableColumn fx:id="userNameColumn" prefWidth="107.0" text="Nama Pekerja" />
+                              <TableColumn fx:id="evaluator1NameColumn" prefWidth="107.0" text="Nama Penilai 1" />
+                              <TableColumn fx:id="evaluator2NameColumn" prefWidth="107.0" text="Nama Penilai 2" />
+                              <TableColumn fx:id="overallRatingColumn" prefWidth="107.0" text="Nilai Akhir" />
+                              <TableColumn fx:id="overallQualityColumn" prefWidth="107.0" text="Kualitas Akhir" />
+                              <TableColumn fx:id="evaluationCommentColumn" prefWidth="223.0" text="Komentar Penilaian" />
+                              <TableColumn fx:id="coachingResultColumn" prefWidth="234.0" text="Hasil Coaching" />
+                              <TableColumn fx:id="addendumColumn" prefWidth="234.0" text="Addendum" />
                            </columns>
                         </TableView>
                      </content>

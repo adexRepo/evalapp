@@ -9,18 +9,18 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" fx:controller="com.kkp.evalapp.controller.EvaluationMgmtController" minHeight="-Infinity" minWidth="-Infinity" prefHeight="519.0" prefWidth="673.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" fx:controller="com.kkp.evalapp.controller.EvaluationMgmtController" minHeight="-Infinity" minWidth="-Infinity" prefHeight="519.0" prefWidth="673.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ScrollPane layoutX="11.0" layoutY="112.0" prefHeight="205.0" prefWidth="649.0">
          <content>
             <TableView fx:id="tbHistory" prefHeight="203.0" prefWidth="713.0">
               <columns>
-                <TableColumn prefWidth="91.0" text="Evaluation ID" />
-                <TableColumn prefWidth="88.0" text="Status" />
-                  <TableColumn prefWidth="157.0" text="Pekerja" />
-                  <TableColumn prefWidth="134.0" text="Penilai 1" />
-                  <TableColumn prefWidth="128.0" text="Penilai 2" />
-                  <TableColumn prefWidth="114.0" text="Periode" />
+                  <TableColumn fx:id="evaluationIdColumn" prefWidth="91.0" text="Evaluation ID" />
+                  <TableColumn fx:id="statusColumn" prefWidth="88.0" text="Status" />
+                  <TableColumn fx:id="workerColumn" prefWidth="157.0" text="Pekerja" />
+                  <TableColumn fx:id="evaluator1Column" prefWidth="134.0" text="Penilai 1" />
+                  <TableColumn fx:id="evaluator2Column" prefWidth="128.0" text="Penilai 2" />
+                  <TableColumn fx:id="periodColumn" prefWidth="114.0" text="Periode" />
               </columns>
             </TableView>
          </content>
@@ -42,16 +42,16 @@
          <columns>
             <TableColumn prefWidth="98.0" text="Penetapan Sasaran Kerja">
                <columns>
-                  <TableColumn prefWidth="98.0" text="Pekerja" />
-                  <TableColumn prefWidth="110.0" text="Penilai 1" />
-                  <TableColumn prefWidth="115.0" text="Penilai 2" />
+                  <TableColumn fx:id="pekerjaSasaranKerjaColumn"  prefWidth="98.0" text="Pekerja" />
+                  <TableColumn fx:id="penilai1SasaranKerjaColumn" prefWidth="110.0" text="Penilai 1" />
+                  <TableColumn fx:id="penilai2SasaranKerjaColumn" prefWidth="115.0" text="Penilai 2" />
                </columns>
             </TableColumn>
             <TableColumn prefWidth="110.0" text="Penetapan Hasil Penilaian Kerja">
                <columns>
-                  <TableColumn prefWidth="98.0" text="Pekerja" />
-                  <TableColumn prefWidth="110.0" text="Penilai 1" />
-                  <TableColumn prefWidth="115.0" text="Penilai 2" />
+                  <TableColumn fx:id="pekerjaHasilPenilaianColumn" prefWidth="98.0" text="Pekerja" />
+                  <TableColumn fx:id="penilai1HasilPenilaianColumn" prefWidth="110.0" text="Penilai 1" />
+                  <TableColumn fx:id="penilai2HasilPenilaianColumn" prefWidth="115.0" text="Penilai 2" />
                </columns>
             </TableColumn>
          </columns>
@@ -61,6 +61,6 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Button fx:id="btnTtd1" layoutX="520.0" layoutY="473.0" mnemonicParsing="false" onAction="#handleBtnTtd" text="Lihat Hasil Keseluruhan" />
+      <Button fx:id="btnResultAll" layoutX="520.0" layoutY="473.0" mnemonicParsing="false" onAction="#handleBtnResultAll" text="Lihat Hasil Keseluruhan" />
    </children>
 </AnchorPane>
