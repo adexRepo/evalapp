@@ -9,7 +9,9 @@ import org.apache.ibatis.annotations.Mapper;
 import com.kkp.evalapp.model.ColumnItem;
 import com.kkp.evalapp.model.Competency;
 import com.kkp.evalapp.model.CompetencyScale;
+import com.kkp.evalapp.model.Employee;
 import com.kkp.evalapp.model.EvaluationBase;
+import com.kkp.evalapp.model.EvaluationRelation;
 import com.kkp.evalapp.model.EvaluationResultAll;
 import com.kkp.evalapp.model.LastCriteriaEvaluation;
 import com.kkp.evalapp.model.MenuItem;
@@ -41,11 +43,12 @@ public interface EvalappMapper {
     Integer selectCountCurrentIdInWorkGoalsMap();
     List<EvaluationResultAll> selectCurrentEvaluationResultAll(Integer evaluationId);
     List<LastCriteriaEvaluation> selectAllLastCriteriaEvaluation();
+    List<Employee> selectAllEmployeePenilai(String position);
 
     /* --------------------------------- Insert --------------------------------- */
     void insertNewUser(User entity);
-    void insertNewIntoEvaluationBase();
-    void insertNewIntoEvaluationRelation();
+    void insertNewIntoEvaluationBase(EvaluationBase base);
+    void insertNewIntoEvaluationRelation(EvaluationRelation relation);
     void insertIntoCompetencyTeknikal(Map<Object, Object> tcNew);
     void insertIntoCompetencyScoreMap(Map<Object, Object> csNew);
     void insertIntoCompetencyScoreBase(Map<Object, Object> scoreBase);

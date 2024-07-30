@@ -139,7 +139,7 @@ public class MainController implements Initializable {
                         newTab.setContent(root);
                     }
                     else{
-                        Label root = new Label("Still  on progress");
+                        Label root = new Label("Logout OK");
                         newTab.setContent(root);
                     }
                 }

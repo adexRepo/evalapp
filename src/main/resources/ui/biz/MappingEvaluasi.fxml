@@ -38,7 +38,7 @@
       </Label>
       <ScrollPane layoutX="13.0" layoutY="293.0">
          <content>
-            <TableView fx:id="tbPenliai" prefHeight="109.0" prefWidth="683.0">
+            <TableView  fx:id="tbPenilai" prefHeight="109.0" prefWidth="683.0">
                <columns>
                   <TableColumn fx:id="idPenilaiColumn" prefWidth="77.0" text="ID" />
                   <TableColumn fx:id="namaPenilaiColumn" prefWidth="181.0" text="Nama Karyawan" />

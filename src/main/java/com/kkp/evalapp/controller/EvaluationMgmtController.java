@@ -8,22 +8,29 @@ import java.util.ResourceBundle;
 
 import org.springframework.stereotype.Component;
 
+import com.kkp.evalapp.config.Router;
 import com.kkp.evalapp.constats.DataStorage;
 import com.kkp.evalapp.model.HistoryEvaluation;
 import com.kkp.evalapp.model.TandaTangan;
 import com.kkp.evalapp.utils.PopupUtil;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import lombok.RequiredArgsConstructor;
 import net.rgielen.fxweaver.core.FxmlView;
 
 @Component
 @FxmlView("/ui/biz/ManagemenEvaluasi.fxml")
+@RequiredArgsConstructor
 public class EvaluationMgmtController implements Initializable {
+
+    private final Router router;
+
     @FXML
     private TableView<HistoryEvaluation> tbHistory;
     @FXML
@@ -69,10 +76,11 @@ public class EvaluationMgmtController implements Initializable {
     }
 
     @FXML
-    private void handleBtnBuat() {
-        Map<String, Object> parameterMap = new HashMap<>();
-        parameterMap.put("fxmlPath", "/ui/biz/MappingEvaluasi.fxml");
-        PopupUtil.showPopup(MappingEvaluationController.class, parameterMap);
+    private void handleBtnBuat(ActionEvent event) {
+        router.popup(MappingEvaluationController.class,event);
+        // Map<String, Object> parameterMap = new HashMap<>();
+        // parameterMap.put("fxmlPath", "/ui/biz/MappingEvaluasi.fxml");
+        // PopupUtil.showPopup(MappingEvaluationController.class, parameterMap);
     }
 
     @FXML
@@ -92,7 +100,7 @@ public class EvaluationMgmtController implements Initializable {
 
     @FXML
     private void handleBtnResultAll() {
-                Map<String, Object> parameterMap = new HashMap<>();
+        Map<String, Object> parameterMap = new HashMap<>();
         parameterMap.put("fxmlPath", "/ui/biz/HasilPenilaian.fxml");
         DataStorage storage = DataStorage.getInstance();
         storage.getCache().put("evaluationId", 1);// need to change

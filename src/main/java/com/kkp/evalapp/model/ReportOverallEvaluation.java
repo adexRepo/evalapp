@@ -13,7 +13,7 @@ public class ReportOverallEvaluation {
     private String  userName          ;
     private String  evaluator1Name    ;
     private String  evaluator2Name    ;
-    private Double  overallRating     ;
+    private String  overallRating     ;
     private Integer overallQuality    ;
     private String  evaluationComment ;
     private String  coachingResult    ;

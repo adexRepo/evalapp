@@ -19,7 +19,7 @@ public class EvalappMapperTest{
     private SqlSession session;
 
     @Test
-    void testGetListInSimple(){
+    void testGetListInSimple() {
         List<Simple> positions    = session.getMapper(EvalappMapper.class).selectPositionList   ();
         List<Simple> divisions    = session.getMapper(EvalappMapper.class).selectDivisionList   ();
         List<Simple> departements = session.getMapper(EvalappMapper.class).selectDepartementList();

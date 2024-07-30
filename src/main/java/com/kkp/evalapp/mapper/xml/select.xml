@@ -164,4 +164,34 @@
             last_criteria_evaluation lce
         order by  id
     </select>
+
+    <select id="selectAllEmployeePenilai" parameterType="String" resultType="com.kkp.evalapp.model.Employee">
+        select
+            a.id as idPekerja
+            , a.nama as namaPekerja
+            , d.name as divisiPekerja
+            , d2.name as departemenPekerja
+            , p.name as jabatanPekerja
+            , l.name as levelPekerja
+        from
+            users a
+            , divisions d
+            , departements d2 
+            , positions p 
+            , levels l 
+        where
+            <choose>
+                <when test="position == 'pekerja'">
+                    a.position_id = 7
+                </when>
+                <when test="position == 'penilai'">
+                    a.position_id IN (5, 6)
+                </when>
+            </choose>
+            and a.position_id = p.id 
+            and a.dept_id = d2.id 
+            and a.div_id = d.id 
+            and a.level_id = l.id
+        order by a.id 
+    </select>
 </mapper>

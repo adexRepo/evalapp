@@ -40,14 +40,14 @@
       <Button fx:id="btnTtd" layoutX="518.0" layoutY="322.0" mnemonicParsing="false" onAction="#handleBtnTtd" text="Tanda Tangani Rencana" />
       <TableView fx:id="tbTtd" layoutX="11.0" layoutY="367.0" prefHeight="100.0" prefWidth="649.0">
          <columns>
-            <TableColumn prefWidth="98.0" text="Penetapan Sasaran Kerja">
+            <TableColumn  prefWidth="98.0" text="Penetapan Sasaran Kerja">
                <columns>
                   <TableColumn fx:id="pekerjaSasaranKerjaColumn"  prefWidth="98.0" text="Pekerja" />
                   <TableColumn fx:id="penilai1SasaranKerjaColumn" prefWidth="110.0" text="Penilai 1" />
                   <TableColumn fx:id="penilai2SasaranKerjaColumn" prefWidth="115.0" text="Penilai 2" />
                </columns>
             </TableColumn>
-            <TableColumn prefWidth="110.0" text="Penetapan Hasil Penilaian Kerja">
+            <TableColumn  prefWidth="110.0" text="Penetapan Hasil Penilaian Kerja">
                <columns>
                   <TableColumn fx:id="pekerjaHasilPenilaianColumn" prefWidth="98.0" text="Pekerja" />
                   <TableColumn fx:id="penilai1HasilPenilaianColumn" prefWidth="110.0" text="Penilai 1" />
